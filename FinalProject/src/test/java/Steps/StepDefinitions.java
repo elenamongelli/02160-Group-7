@@ -27,4 +27,19 @@ public class StepDefinitions{
 		assertTrue(container.currentTemp()==float1);
 	}
 
+	@When("not reading a temperature")
+	public void not_reading_a_temperature() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	@Then("display a message that the sensor is not working")
+	public void display_a_message_that_the_sensor_is_not_working() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	@Then("display the message until checked")
+	public void display_the_message_until_checked() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
 }
