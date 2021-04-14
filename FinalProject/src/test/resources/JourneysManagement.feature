@@ -1,4 +1,4 @@
-Feature: Title of your feature
+Feature: Journeys management
 
   Scenario: Journey/container registration
     Given 

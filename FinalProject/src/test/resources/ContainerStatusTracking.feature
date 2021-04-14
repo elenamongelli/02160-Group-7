@@ -13,7 +13,7 @@ Feature: Monitor internal status of container
     And display the message until checked
 
   Scenario: Display history of internal measurments
-    Given a container
-    When not reading a temperature
-    Then display a message that the sensor is not working
-    And display the message until checked
+    Given 
+    When 
+    Then 
+    And 
