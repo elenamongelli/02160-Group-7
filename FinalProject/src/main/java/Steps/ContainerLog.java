@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class ContainerLog {
 
 	Float temp;
+	
+	String errorMessage = null;
 
 	ArrayList<ContainerLog> history = new ArrayList<ContainerLog>();
 
@@ -31,7 +33,19 @@ public class ContainerLog {
 	}
 
 	public void setTemp(Float temp) {
+		if (temp!=null) {
 		this.temp = temp;
+		} else {
+			errorMessage = "sensor not working";
+		}
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 	public void set (Float temp) {
@@ -42,6 +56,8 @@ public class ContainerLog {
 
 		history.add(measurement);
 	}
+
+
 
 
 

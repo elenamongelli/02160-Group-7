@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 public class StepDefinitions{
 
 	ContainerLog container;
-	Observer ObserverA;
 	String actualAnswer;
 
 	@Given("a container")
@@ -26,7 +25,7 @@ public class StepDefinitions{
 	@Then("display the temperature of {float} C°")
 	public void display_the_temperature_of_c(Float float1) {
 
-		assertTrue(container.getTemp()==float1);
+		assertEquals(container.getTemp(),float1);
 	}
 
 	@When("not reading a temperature")
@@ -35,21 +34,21 @@ public class StepDefinitions{
 		container.setTemp(null);
 
 	}
-	@Then("display a message that the sensor is not working")
-	public void display_a_message_that_the_sensor_is_not_working() {
+	@Then("display a message that the sensor is not working {string}")
+	public void display_a_message_that_the_sensor_is_not_working(String string) {
 
-		ObserverA = new Observer();
-		assertEquals(ObserverA.error(),"Temperature error");
+		assertEquals(container.getErrorMessage(),string);
 
 	}
+	
 	@Then("display the message until checked")
 	public void display_the_message_until_checked() {
 
-		ObserverA.reset();
-
-		assertEquals(ObserverA.error(),"No errors");
+		container.setErrorMessage(null);
+		assertEquals(container.getErrorMessage(),null);
 
 	}
+	 
 
 	@Given("a container with a history of {float} C°, {float} C°, {float} C°, {float} C°")
 	public void a_container_with_a_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
@@ -72,9 +71,6 @@ public class StepDefinitions{
 	public void display_the_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
 	 
 		String expectedAnswer = String.valueOf(float1) + " " + String.valueOf(float2) + " " + String.valueOf(float3) + " " + String.valueOf(float4) + " ";   
-		
-		System.out.println(this.actualAnswer);
-		System.out.println(expectedAnswer);
 		
 		assertEquals(actualAnswer,expectedAnswer);
 		
