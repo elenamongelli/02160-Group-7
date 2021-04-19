@@ -13,7 +13,7 @@ Feature: Monitor internal status of container
     And display the message until checked
 
   Scenario: Display history of internal measurments
-    Given 
-    When 
-    Then 
-    And 
+    Given a container with a history of 25 C°, 10 C°, 2 C°, 30 C°
+    When reading a request for history display
+    Then display the history of 25 C°, 10 C°, 2 C°, 30 C°
+
