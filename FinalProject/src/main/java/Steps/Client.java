@@ -11,9 +11,9 @@ public class Client {
 	}
 
 
-	public void newContainer() {
+	public void newContainer(String origin) {
 		
-		Container container = new Container();
+		Container container = new Container(origin);
 		
 		//is UUID overkill?
 		containers.put(UUID.randomUUID(),container);

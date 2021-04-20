@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 public class StepDefinitions{
 
 	Container container;
-	ContainerLog containerLog;
+	Log containerLog;
 	String actualAnswer;
 	
 	LogisticCompany LogisticCompany;
@@ -28,7 +28,7 @@ public class StepDefinitions{
 	public void the_client_have_a_container(String name) {
 		
 		//The following logic is to get the container object in order to access it easier
-		LogisticCompany.getClients().get(name).newContainer();
+		LogisticCompany.getClients().get(name).newContainer("Copenhagen");
 		UUID id = LogisticCompany.getClients().get(name).getContainers().keySet().stream().findFirst().get();
 		container = LogisticCompany.getClients().get(name).getContainers().get(id);
 		
@@ -118,7 +118,7 @@ public class StepDefinitions{
 	@When("the client creates a journey for the container")
 	public void the_client_creates_a_journey_for_the_container() {
 		
-		container.newJourney();
+		container.newJourney(destination);
 		
 	}
 	@Then("generate a journey ID")

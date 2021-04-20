@@ -3,15 +3,15 @@ package Steps;
 import java.util.ArrayList;
 
 
-public class ContainerLog {
+public class Log {
 
 	private Float temp;
 	
 	private String errorMessage = null;
 
-	private ArrayList<ContainerLog> history = new ArrayList<ContainerLog>();
+	private ArrayList<Log> history = new ArrayList<Log>();
 
-	public ContainerLog() {
+	public Log() {
 		super();
 	}
 
@@ -50,7 +50,7 @@ public class ContainerLog {
 
 	public void set (Float temp) {
 
-		ContainerLog measurement = new ContainerLog();
+		Log measurement = new Log();
 
 		measurement.setTemp(temp);
 
