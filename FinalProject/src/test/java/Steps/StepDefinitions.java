@@ -1,6 +1,7 @@
 package Steps;
 
 import static org.junit.Assert.*;
+import java.util.UUID; 
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,14 +9,40 @@ import io.cucumber.java.en.When;
 
 public class StepDefinitions{
 
-	ContainerLog container;
+	Container container;
+	ContainerLog containerLog;
 	String actualAnswer;
-
-	@Given("a container")
-	public void a_container() {
-
-		container = new ContainerLog();
+	
+	
+	UUID id;
+	
+	
+	LogisticCompany LogisticCompany;
+	
+	@Given("a logistic company have a client {string}")
+	public void a_logistic_company_have_a_client(String name) {
+	   
+		LogisticCompany = new LogisticCompany();
+		
+		LogisticCompany.newClient(name);
+		
+		
 	}
+	
+	@Given("the client {string} have a container")
+	public void the_client_have_a_container(String name) {
+	    
+		LogisticCompany.clients.get(name).newContainer();
+		id = LogisticCompany.clients.get(name).containers.keySet();
+		
+	}
+	
+	@When("the container is reading a temperature of {float} C°")
+	public void the_container_is_reading_a_temperature_of_c(Float float1) {
+	    
+		
+	}
+
 
 	@When("reading a temperature of {float} C°")
 	public void reading_a_temperature_of_c(Float float1) {

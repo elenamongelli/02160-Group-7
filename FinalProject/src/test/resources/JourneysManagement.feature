@@ -1,8 +1,8 @@
 Feature: Journeys management
 
   Background: 
-    Given a logistic company have a client
-    And the client have a container
+    Given a logistic company have a client "Mærsk" # could be observer pattern
+    And the client have a container 
 
   Scenario Outline: Journey registration
     When the client creates a journey for the container
