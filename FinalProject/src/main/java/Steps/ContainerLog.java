@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class ContainerLog {
 
-	Float temp;
+	private Float temp;
 	
-	String errorMessage = null;
+	private String errorMessage = null;
 
-	ArrayList<ContainerLog> history = new ArrayList<ContainerLog>();
+	private ArrayList<ContainerLog> history = new ArrayList<ContainerLog>();
 
 	public ContainerLog() {
 		super();
@@ -57,7 +57,11 @@ public class ContainerLog {
 		history.add(measurement);
 	}
 
-
+	public void clearHistory() {
+		
+		history.clear();
+		
+	}
 
 
 

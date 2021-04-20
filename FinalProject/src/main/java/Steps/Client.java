@@ -4,7 +4,12 @@ import java.util.UUID;
 
 public class Client {
 	
-	HashMap<UUID, Container> containers = new HashMap<UUID, Container>();
+	private HashMap<UUID, Container> containers = new HashMap<UUID, Container>();
+	
+	public HashMap<UUID, Container> getContainers() {
+		return containers;
+	}
+
 
 	public void newContainer() {
 		

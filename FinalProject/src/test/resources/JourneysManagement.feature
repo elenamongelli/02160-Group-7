@@ -1,13 +1,13 @@
 Feature: Journeys management
 
   Background: 
-    Given a logistic company have a client "Mærsk" # could be observer pattern
-    And the client have a container 
+    Given a logistic company have a client "Mærsk"
+    And the client "Mærsk" have a container
 
-  Scenario Outline: Journey registration
+  Scenario: Journey registration
+    Given the container is in port at "Copenhagen"
+    And the client provides the destination "Hamburg"
     When the client creates a journey for the container
-    And the container is in port at <origin>
-    And the client provides the destination <destination>
     Then generate a journey ID
     And return that the journey have been created
 
