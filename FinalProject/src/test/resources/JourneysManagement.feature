@@ -14,10 +14,10 @@ Feature: Journeys management
   Scenario: Failed journey registration
     If the client tries to provide the same destination as the origin
 
-    When the client creates a journey for the container
-    And the container is in port at "Copenhagen"
-    But the client provides the destination "Copenhagen"
-    Then return an error message saying "Same destination as origin>
+    Given the container is in port at "Copenhagen"
+    And the client provides the destination "Copenhagen"
+    When the client creates a journey for the container    
+    Then return an error message saying "Same destination as origin"
 
   Scenario: Failed journey registration
      If the client do not provide an destination
