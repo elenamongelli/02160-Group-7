@@ -8,6 +8,10 @@ public class Container {
 	
 	private String origin;
 	
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
 	public Log getLog() {
 		return log;
 	}
@@ -18,7 +22,7 @@ public class Container {
 
 
 	public void newJourney(String destination) {
-		this.journey = new Journey(this.origin,destination);
+		this.journey = new Journey(destination,this.origin);
 	}
 
 	public Container(String origin) {
@@ -26,4 +30,7 @@ public class Container {
 		this.origin = origin;
 	}
 	
+	public Container() {
+		super();
+	}
 }

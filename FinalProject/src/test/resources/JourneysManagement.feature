@@ -8,14 +8,8 @@ Feature: Journeys management
     Given the container is in port at "Copenhagen"
     And the client provides the destination "Hamburg"
     When the client creates a journey for the container
-    Then generate a journey ID
-    And return that the journey have been created
+    Then check that a journey from "Copenhagen" to "Hamburg" was created
 
-    Examples: 
-      | origin     | destination |
-      | Copenhagen | Hamburg     |
-      | Shanghai   | Rotterdam   |
-      | Antwerp    | Los Angeles |
 
   Scenario: Failed journey registration
     If the client tries to provide the same destination as the origin

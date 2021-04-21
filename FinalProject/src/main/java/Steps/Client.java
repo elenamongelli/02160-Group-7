@@ -19,4 +19,13 @@ public class Client {
 		containers.put(UUID.randomUUID(),container);
 		
 	}
+	
+public void newContainer() {
+		
+		Container container = new Container();
+		
+		//is UUID overkill?
+		containers.put(UUID.randomUUID(),container);
+		
+	}
 }

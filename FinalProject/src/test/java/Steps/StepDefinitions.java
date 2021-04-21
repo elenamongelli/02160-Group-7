@@ -28,7 +28,7 @@ public class StepDefinitions{
 	public void the_client_have_a_container(String name) {
 		
 		//The following logic is to get the container object in order to access it easier
-		LogisticCompany.getClients().get(name).newContainer("Copenhagen");
+		LogisticCompany.getClients().get(name).newContainer();
 		UUID id = LogisticCompany.getClients().get(name).getContainers().keySet().stream().findFirst().get();
 		container = LogisticCompany.getClients().get(name).getContainers().get(id);
 		
@@ -100,13 +100,12 @@ public class StepDefinitions{
 	
 	// journey management --------------------------------------------------------------------------------------------------------------------------------
 
-	String origin;
 	String destination;
 	
 	@Given("the container is in port at {string}")
 	public void the_container_is_in_port_at_copenhagen(String origin) {
 	    
-		this.origin = origin;
+		container.setOrigin(origin);
 		
 	}
 	@Given("the client provides the destination {string}")
@@ -121,16 +120,15 @@ public class StepDefinitions{
 		container.newJourney(destination);
 		
 	}
-	@Then("generate a journey ID")
-	public void generate_a_journey_id() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("check that a journey from {string} to {string} was created")
+	public void check_that_a_journey_from_to_was_created(String string1, String string2) {
+		
+		assertEquals(container.getJourney().getOrigin(),string1);
+		assertEquals(container.getJourney().getDestination(),string2);
+		
+		
 	}
-	@Then("return that the journey have been created")
-	public void return_that_the_journey_have_been_created() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
+
 
 
 
