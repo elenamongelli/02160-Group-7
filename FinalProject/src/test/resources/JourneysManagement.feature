@@ -1,7 +1,7 @@
 Feature: Journeys management
 
   Background: 
-    Given a logistic company have a client "Netto"
+    Given logistic company "Mærsk" have a client "Netto"
     And the client "Netto" have a container
 
   Scenario: Journey registration
@@ -10,13 +10,12 @@ Feature: Journeys management
     When the client creates a journey for the container
     Then check that a journey from "Copenhagen" to "Hamburg" was created
 
-
   Scenario: Failed journey registration
     If the client tries to provide the same destination as the origin
 
     Given the container is in port at "Copenhagen"
     And the client provides the destination "Copenhagen"
-    When the client creates a journey for the container    
+    When the client creates a journey for the container
     Then return an error message saying "Same destination as origin"
 
   Scenario: Failed journey registration

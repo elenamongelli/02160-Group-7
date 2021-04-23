@@ -19,6 +19,16 @@ public class Client {
 
 	}
 	
+	public void newContainer(String origin, String destination) {
+
+		Container newContainer = new Container(new ArrayList<Journey>(), origin, UUID.randomUUID());
+
+		newJourney(newContainer,destination);
+		
+		containers.add(newContainer);
+
+	}
+	
 	public void newJourney(Container container,String destination) {
 		
 		Journey newjourney = new Journey(container.getOrigin(), destination, new Log(null,new ArrayList<SensorData>()), UUID.randomUUID());

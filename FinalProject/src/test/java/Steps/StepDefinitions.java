@@ -3,9 +3,7 @@ package Steps;
 import static org.junit.Assert.*;
 import java.util.UUID;
 
-import Model.Container;
-import Model.Log;
-import Model.LogisticCompany;
+import Model.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,31 +14,28 @@ public class StepDefinitions{
 	Log containerLog;
 	String actualAnswer;
 	
-	LogisticCompany LogisticCompany;
+	Facade model;
 	
-	@Given("a logistic company have a client {string}")
-	public void a_logistic_company_have_a_client(String name) {
+	@Given("logistic company {string} have a client {string}")
+	public void logistic_company_have_a_client(String logisticCompanyName, String clientName) {
 	   
-		LogisticCompany = new LogisticCompany();
-		
-		LogisticCompany.newClient(name);
+		model = new Facade(new LogisticCompany(logisticCompanyName));
+		model.createClient(clientName);
 		
 	}
 	
-	@Given("the client {string} have a container")
-	public void the_client_have_a_container(String name) {
-		
-		//The following logic is to get the container object in order to access it easier
-		LogisticCompany.getClients().get(name).newContainer("Copenhagen");
-		container = LogisticCompany.getClients().get(name).getContainers().get(0);
+	@Given("the client have a container going from from {string} to {string}")
+	public void the_client_have_a_container_going_from_from_to(String origin, String destination) {
+	   
+		model.createContainerWithJourney(origin,destination);
 		
 	}
+	
 	
 	@When("the container is reading a temperature of {float} C°")
-	public void the_container_is_reading_a_temperature_of_c(Float float1) {
+	public void the_container_is_reading_a_temperature_of_c(Float temp) {
 	    
-		
-		container.getLog().setTemp(float1);
+		model.updateContainerStates(model.getContainers().get(model.getContainers().size()),temp);
 		
 	}
 
