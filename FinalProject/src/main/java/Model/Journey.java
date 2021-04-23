@@ -16,30 +16,23 @@ public class Journey {
 		this.log = log;
 		this.journeyID = journeyID;
 	}
+	
+	public Log getLog() {
+		return log;
+	}
 
-	public String getDestination
-	() {
+	public String getDestination() {
 		return destination;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
 
 	public String getOrigin() {
 		return origin;
 	}
 
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}
 
 	public UUID getJourneyID() {
 		return journeyID;
-	}
-
-	public Log getLog() {
-		return log;
 	}	
 	
 }

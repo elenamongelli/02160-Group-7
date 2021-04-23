@@ -3,7 +3,7 @@ package Model;
 public class SensorData {
 
 	private Float temp;
-
+	
 	public Float getTemp() {
 		return temp;
 	}
@@ -16,5 +16,13 @@ public class SensorData {
 		super();
 		this.temp = temp;
 	}
+
+	@Override
+	public String toString() {
+		
+		return temp.toString();
+	}
+	
+	
 	
 }

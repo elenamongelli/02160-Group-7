@@ -1,6 +1,8 @@
 package Steps;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 import Model.*;
@@ -10,10 +12,8 @@ import io.cucumber.java.en.When;
 
 public class StepDefinitions{
 
+	ArrayList<SensorData> actualAnswer;
 	Container container;
-	Log containerLog;
-	String actualAnswer;
-	
 	Facade model;
 	
 	@Given("logistic company {string} have a client {string}")
@@ -32,67 +32,54 @@ public class StepDefinitions{
 	}
 	
 	
+	
 	@When("the container is reading a temperature of {float} C°")
 	public void the_container_is_reading_a_temperature_of_c(Float temp) {
-	    
-		model.updateContainerStates(model.getContainers().get(model.getContainers().size()),temp);
+		
+		container = model.getContainer(model.getContainers().size()-1);
+		model.newSensorData(container,temp);
 		
 	}
 
 	@Then("display the temperature of {float} C°")
 	public void display_the_temperature_of_c(Float float1) {
 
-		assertEquals(container.getLog().getTemp(),float1);
-	}
-
-	@When("the container is not reading a temperature")
-	public void the_container_is_not_reading_a_temperature() {
-	    
-		container.getLog().setTemp(null);
-		
-	}
-	
-	@Then("display a message that the sensor is not working {string}")
-	public void display_a_message_that_the_sensor_is_not_working(String string) {
-
-		assertEquals(container.getLog().getErrorMessage(),string);
-
-	}
-	
-	@Then("display the message until checked")
-	public void display_the_message_until_checked() {
-
-		container.getLog().setErrorMessage(null);
-		assertEquals(container.getLog().getErrorMessage(),null);
-
+		assertEquals(model.getLatestSensorData(container).getTemp(),float1);
 	}
 	 
 	
 	@Given("the container have a history of {float} C°, {float} C°, {float} C°, {float} C°")
 	public void the_container_have_a_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
-	   
-		container.getLog().clearHistory();
-		container.getLog().set(float1);
-		container.getLog().set(float2);
-		container.getLog().set(float3);
-		container.getLog().set(float4);
 		
+		container = model.getContainer(model.getContainers().size()-1);
+		model.newJourney(container, "Hamburg");
+		model.newSensorData(container, float1);
+		model.newSensorData(container, float2);
+		model.newSensorData(container, float3);
+		model.newSensorData(container, float4);
 	}
 
 	@When("reading a request for history display")
 	public void reading_a_request_for_history_display() {
 
-		actualAnswer=container.getLog().requestHistory();
+		actualAnswer=model.getLatestLog(container).getHistory();
 
 	}
 	
 	@Then("display the history of {float} C°, {float} C°, {float} C°, {float} C°")
 	public void display_the_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
-	 
-		String expectedAnswer = String.valueOf(float1) + " " + String.valueOf(float2) + " " + String.valueOf(float3) + " " + String.valueOf(float4) + " ";   
 		
-		assertEquals(actualAnswer,expectedAnswer);
+		Log log = new Log(new ArrayList<SensorData>());
+		log.addSensorData(new SensorData(float1));
+		log.addSensorData(new SensorData(float2));
+		log.addSensorData(new SensorData(float3));
+		log.addSensorData(new SensorData(float4));
 		
+		ArrayList<SensorData> expectedAnswer = log.getHistory();
+		
+		for(int i=0; i<3; i++) {
+		assertEquals(expectedAnswer.get(i).toString(),actualAnswer.get(i).toString());
+		}
 	}
 	
 	// journey management --------------------------------------------------------------------------------------------------------------------------------

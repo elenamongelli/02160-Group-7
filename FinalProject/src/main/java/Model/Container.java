@@ -20,6 +20,10 @@ public class Container {
 	public ArrayList<Journey> getJourneys() {
 		return journeys;
 	}
+	
+	public Journey getLatestJourney() {
+		return this.journeys.get(this.journeys.size()-1);
+	}
 
 	public void setOrigin(String origin) {
 		this.origin = origin;

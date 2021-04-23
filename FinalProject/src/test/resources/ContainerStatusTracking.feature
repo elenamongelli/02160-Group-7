@@ -15,11 +15,6 @@ Feature: Monitor internal status of container
       |   -1 |
       | 10.5 |
 
-  Scenario: Unsuccessfull reading of temperature
-    When the container is not reading a temperature
-    Then display a message that the sensor is not working "sensor not working"
-    And display the message until checked
-
   Scenario Outline: Display history of internal measurments
     Given the container have a history of <temp1> C°, <temp2> C°, <temp3> C°, <temp4> C°
     When reading a request for history display

@@ -28,8 +28,8 @@ public class LogisticCompany {
 		
 	}
 
-	public HashMap<String, Client> getClients() {
-		return clients;
+	public Client getClient(String Client) {
+		return clients.get(Client);
 	}
 	
 }
