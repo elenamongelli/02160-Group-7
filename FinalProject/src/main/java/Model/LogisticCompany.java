@@ -1,4 +1,4 @@
-package Steps;
+package Model;
 import java.util.HashMap;
 
 public class LogisticCompany {

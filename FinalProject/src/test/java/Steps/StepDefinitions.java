@@ -1,8 +1,11 @@
 package Steps;
 
 import static org.junit.Assert.*;
-import java.util.UUID; 
+import java.util.UUID;
 
+import Model.Container;
+import Model.Log;
+import Model.LogisticCompany;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,9 +31,8 @@ public class StepDefinitions{
 	public void the_client_have_a_container(String name) {
 		
 		//The following logic is to get the container object in order to access it easier
-		LogisticCompany.getClients().get(name).newContainer();
-		UUID id = LogisticCompany.getClients().get(name).getContainers().keySet().stream().findFirst().get();
-		container = LogisticCompany.getClients().get(name).getContainers().get(id);
+		LogisticCompany.getClients().get(name).newContainer("Copenhagen");
+		container = LogisticCompany.getClients().get(name).getContainers().get(0);
 		
 	}
 	

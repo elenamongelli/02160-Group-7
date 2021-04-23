@@ -1,20 +1,24 @@
-package Steps;
+package Model;
 import java.util.UUID;
 
 public class Journey {
 
 	private String destination;
 	private String origin;
+	private Log log;
 	
-	private UUID journeyID = UUID.randomUUID();
+	private UUID journeyID;
 	
-	public Journey(String destination, String origin) {
+	public Journey(String origin, String destination, Log log, UUID journeyID) {
 		super();
 		this.destination = destination;
 		this.origin = origin;
+		this.log = log;
+		this.journeyID = journeyID;
 	}
 
-	public String getDestination() {
+	public String getDestination
+	() {
 		return destination;
 	}
 
@@ -34,10 +38,8 @@ public class Journey {
 		return journeyID;
 	}
 
-	public void setJourneyID(UUID journeyID) {
-		this.journeyID = journeyID;
-	}
-	
-	
+	public Log getLog() {
+		return log;
+	}	
 	
 }

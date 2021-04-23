@@ -1,8 +1,8 @@
 Feature: Journeys management
 
   Background: 
-    Given a logistic company have a client "Mærsk"
-    And the client "Mærsk" have a container
+    Given a logistic company have a client "Netto"
+    And the client "Netto" have a container
 
   Scenario: Journey registration
     Given the container is in port at "Copenhagen"

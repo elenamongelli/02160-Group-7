@@ -1,8 +1,8 @@
 Feature: Monitor internal status of container
  
  Background: 
-    Given a logistic company have a client "Mærsk"
-    And the client "Mærsk" have a container
+    Given a logistic company have a client "Netto"
+    And the client "Netto" have a container
   
   
   Scenario Outline: Successfull reading of temperature
