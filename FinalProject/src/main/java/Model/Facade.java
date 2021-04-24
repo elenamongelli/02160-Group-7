@@ -20,45 +20,45 @@ public class Facade {
 
 	}
 
-	public void createContainer(String ClientName, String origin) {
+	public void createContainer(String origin) {
 
-		logisticCompany.getClient(ClientName).newContainer(origin);
-
-	}
-
-	public void createContainerWithJourney(String ClientName, String origin, String destination) {
-
-		logisticCompany.getClient(ClientName).newContainer(origin, destination);
+		logisticCompany.newContainer(origin);
 
 	}
 
-	public Boolean newJourney(String ClientName, Container container, String destination) {
+	public void createContainerWithJourney(String origin, String destination) {
 
-		return logisticCompany.getClient(ClientName).newJourney(container, destination);
-
-	}
-
-	public void newJourney(String ClientName, Container container, String origin, String destination) {
-
-		logisticCompany.getClient(ClientName).newJourney(container, origin, destination);
+		logisticCompany.newContainer(origin, destination);
 
 	}
 
-	public void newSensorData(String ClientName, Container container, float temp) {
+	public Boolean newJourney(Container container, String destination) {
 
-		logisticCompany.getClient(ClientName).newSensordata(container, temp);
-
-	}
-
-	public ArrayList<Container> getContainers(String ClientName) {
-
-		return logisticCompany.getClient(ClientName).getContainers();
+		return logisticCompany.newJourney(container, destination);
 
 	}
 
-	public Container getContainer(String ClientName, int index) {
+	public void newJourney(Container container, String origin, String destination) {
 
-		return getContainers(ClientName).get(index);
+		logisticCompany.newJourney(container, origin, destination);
+
+	}
+
+	public void newSensorData(Container container, float temp) {
+
+		logisticCompany.newSensordata(container, temp);
+
+	}
+
+	public ArrayList<Container> getContainers() {
+
+		return logisticCompany.getContainers();
+
+	}
+
+	public Container getContainer(int index) {
+
+		return getContainers().get(index);
 
 	}
 
@@ -70,19 +70,19 @@ public class Facade {
 	
 	public Log getLatestLog(Container container) {
 		
-		return logisticCompany.getClient(ClientName).getLatestLog(container);
+		return logisticCompany.getLatestLog(container);
 		
 	}
 
-	public SensorData getLatestSensorData(String ClientName, Container container) {
+	public SensorData getLatestSensorData(Container container) {
 
-		return logisticCompany.getClient(ClientName).getLatestSensorData(container);
+		return logisticCompany.getLatestSensorData(container);
 
 	}
 
-	public Journey getLatestJourney(String ClientName, Container container) {
+	public Journey getLatestJourney(Container container) {
 
-		return logisticCompany.getClient(ClientName).getLatestJourney(container);
+		return logisticCompany.getLatestJourney(container);
 
 	}
 
