@@ -9,12 +9,23 @@ public class Container {
 	private String origin;
 	
 	private UUID id;
+	
+	private boolean onJourney;
 
-	public Container(ArrayList<Journey> journeys, String origin, UUID id) {
+	public Container(ArrayList<Journey> journeys, String origin, UUID id, boolean onJourney) {
 		super();
 		this.journeys = journeys;
 		this.origin = origin;
-		this.id = id;
+		this.id = id; 
+		this.onJourney = onJourney;
+	}
+
+	public boolean isOnJourney() {
+		return onJourney;
+	}
+
+	public void setOnJourney(boolean onJourney) {
+		this.onJourney = onJourney;
 	}
 
 	public ArrayList<Journey> getJourneys() {

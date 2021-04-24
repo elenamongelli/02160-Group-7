@@ -33,6 +33,6 @@ public class Journey {
 
 	public UUID getJourneyID() {
 		return journeyID;
-	}	
+	}
 	
 }

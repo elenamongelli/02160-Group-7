@@ -13,10 +13,6 @@ public class Facade {
 		this.logisticCompany = logisticCompany;
 	}
 
-	public void login(String username, String password) {
-
-	}
-
 	public void createClient(String ClientName) {
 
 		this.ClientName = ClientName;
@@ -24,45 +20,45 @@ public class Facade {
 
 	}
 
-	public void createContainer(String origin) {
+	public void createContainer(String ClientName, String origin) {
 
-		logisticCompany.getClient(this.ClientName).newContainer(origin);
-
-	}
-
-	public void createContainerWithJourney(String origin, String destination) {
-
-		logisticCompany.getClient(this.ClientName).newContainer(origin, destination);
+		logisticCompany.getClient(ClientName).newContainer(origin);
 
 	}
 
-	public void newJourney(Container container, String destination) {
+	public void createContainerWithJourney(String ClientName, String origin, String destination) {
 
-		logisticCompany.getClient(this.ClientName).newJourney(container, destination);
-
-	}
-
-	public void newJourney(Container container, String origin, String destination) {
-
-		logisticCompany.getClient(this.ClientName).newJourney(container, origin, destination);
+		logisticCompany.getClient(ClientName).newContainer(origin, destination);
 
 	}
 
-	public void newSensorData(Container container, float temp) {
+	public Boolean newJourney(String ClientName, Container container, String destination) {
 
-		logisticCompany.getClient(this.ClientName).newSensordata(container, temp);
-
-	}
-
-	public ArrayList<Container> getContainers() {
-
-		return logisticCompany.getClient(this.ClientName).getContainers();
+		return logisticCompany.getClient(ClientName).newJourney(container, destination);
 
 	}
 
-	public Container getContainer(int index) {
+	public void newJourney(String ClientName, Container container, String origin, String destination) {
 
-		return getContainers().get(index);
+		logisticCompany.getClient(ClientName).newJourney(container, origin, destination);
+
+	}
+
+	public void newSensorData(String ClientName, Container container, float temp) {
+
+		logisticCompany.getClient(ClientName).newSensordata(container, temp);
+
+	}
+
+	public ArrayList<Container> getContainers(String ClientName) {
+
+		return logisticCompany.getClient(ClientName).getContainers();
+
+	}
+
+	public Container getContainer(String ClientName, int index) {
+
+		return getContainers(ClientName).get(index);
 
 	}
 
@@ -78,16 +74,27 @@ public class Facade {
 		
 	}
 
-	public SensorData getLatestSensorData(Container container) {
+	public SensorData getLatestSensorData(String ClientName, Container container) {
 
-		return logisticCompany.getClient(this.ClientName).getLatestSensorData(container);
+		return logisticCompany.getClient(ClientName).getLatestSensorData(container);
 
 	}
 
-	public Journey getLatestJourney(Container container) {
+	public Journey getLatestJourney(String ClientName, Container container) {
 
-		return logisticCompany.getClient(this.ClientName).getLatestJourney(container);
+		return logisticCompany.getClient(ClientName).getLatestJourney(container);
 
+	}
+
+	public ArrayList<Container> filterContainerByOrigin(ArrayList<Container> containers,String origin) {
+		
+		ArrayList<Container> filteredContainers = new ArrayList<Container>();
+		
+		for(Container i : containers) {
+			if ()
+		}
+		
+		return null;
 	}
 
 

@@ -2,10 +2,9 @@ Feature: Journeys management
 
   Background: 
     Given logistic company "Mærsk" have a client "Netto"
-    And the client "Netto" have a container
 
   Scenario: Journey registration
-    Given the container is in port at "Copenhagen"
+    Given the client have a container at "Copenhagen"
     And the client provides the destination "Hamburg"
     When the client creates a journey for the container
     Then check that a journey from "Copenhagen" to "Hamburg" was created
@@ -13,29 +12,35 @@ Feature: Journeys management
   Scenario: Failed journey registration
     If the client tries to provide the same destination as the origin
 
-    Given the container is in port at "Copenhagen"
-    And the client provides the destination "Copenhagen"
+    Given the client have a container at "New York"
+    And the client provides the destination "New York"
     When the client creates a journey for the container
-    Then return an error message saying "Same destination as origin"
+    Then return an error of false
 
   Scenario: Failed journey registration
      If the client do not provide an destination
 
+    Given the client have a container at "New York"
+    And the client provides the destination " "
     When the client creates a journey for the container
-    And the container is in port at "Rotterdam"
-    But the client provides the destination " "
-    Then return an error message saying "No destination"
+    Then return an error of false
 
   Scenario: Failed journey registration
     If the client do not provide an origin
 
+    Given the client have a container at " "
+    And the client provides the destination "Chicago"
     When the client creates a journey for the container
-    And the container is in port at " "
-    But the client provides the destination "Los Angeles"
-    Then return an error message saying "No origin"
+    Then return an error of false
 
   #Container tracking
-  Scenario Outline: The client wants to filter for origin
+  Scenario: The logistic company wants to re-use a container for a new journey.
+  	Given the client want to ship a container from "Shanghai" to "Antwerp"
+    When the logistic company already have a container in "Shanghai"
+    Then re-use the container for the journey
+
+
+  Scenario Outline: The client wants to ship a container with <content> from <origin> to <destination>.
     When the client wants only see containers that orginated from <origin>
     Then show the client all the containers that orginated from <origin>
 
@@ -44,13 +49,3 @@ Feature: Journeys management
       | Copenhagen |
       | Shanghai   |
       | Antwerp    |
-
-  Scenario Outline: The client wants to filter for destination
-    When the client wants only see containers with the destination of <destination>
-    Then show the client all the containers with the destination of <destination>
-
-    Examples: 
-      | destination |
-      | Hamburg     |
-      | Rotterdam   |
-      | Los Angeles |
