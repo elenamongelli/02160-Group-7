@@ -19,64 +19,52 @@ public class StepDefinitions{
 	
 	@Given("logistic company {string} have a client {string}")
 	public void logistic_company_have_a_client(String logisticCompanyName, String clientName) {
-	   
 		this.clientName = clientName; 
 		model = new Facade(new LogisticCompany(logisticCompanyName));
 		model.createClient(clientName);
-		
 	}
 	
 	@Given("the client have a container going from from {string} to {string}")
 	public void the_client_have_a_container_going_from_from_to(String origin, String destination) {
-	   
-		model.createContainerWithJourney(clientName, origin,destination);
-		
+		model.newJourney(clientName, origin, destination);
 	}
 	
 	
 	
 	@When("the container is reading a temperature of {float} C°")
 	public void the_container_is_reading_a_temperature_of_c(Float temp) {
-		
-		container = model.getContainer(clientName, model.getContainers(clientName).size()-1);
-		model.newSensorData(clientName, container,temp);
-		
+		container = model.getContainer(model.getAllContainers().size()-1);
+		model.newSensorData(container, temp);
 	}
 
 	@Then("display the temperature of {float} C°")
 	public void display_the_temperature_of_c(Float float1) {
-
-		assertEquals(model.getLatestSensorData(clientName, container).getTemp(),float1);
+		assertEquals(model.getLatestSensorData(container).getTemp(),float1);
 	}
 	 
 	
 	@Given("the container have a history of {float} C°, {float} C°, {float} C°, {float} C°")
 	public void the_container_have_a_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
-		
-		container = model.getContainer(clientName, model.getContainers(clientName).size()-1);
-		model.newJourney(clientName, container, "Hamburg");
-		model.newSensorData(clientName, container, float1);
-		model.newSensorData(clientName, container, float2);
-		model.newSensorData(clientName, container, float3);
-		model.newSensorData(clientName, container, float4);
+		model.newJourney(clientName, "London", "Hamburg");
+		container = model.getContainer(model.getAllContainers().size()-1);
+		model.newSensorData(container, float1);
+		model.newSensorData(container, float2);
+		model.newSensorData(container, float3);
+		model.newSensorData(container, float4);
 	}
 
 	@When("reading a request for history display")
 	public void reading_a_request_for_history_display() {
-
 		actualAnswer=model.getLatestLog(container).getHistory();
-
 	}
 	
 	@Then("display the history of {float} C°, {float} C°, {float} C°, {float} C°")
 	public void display_the_history_of_c_c_c_c(Float float1, Float float2, Float float3, Float float4) {
-		
 		Log log = new Log(new ArrayList<SensorData>());
 		log.addSensorData(new SensorData(float1));
 		log.addSensorData(new SensorData(float2));
 		log.addSensorData(new SensorData(float3));
 		log.addSensorData(new SensorData(float4));
-		
 		ArrayList<SensorData> expectedAnswer = log.getHistory();
 		
 		for(int i=0; i<3; i++) {
@@ -84,7 +72,7 @@ public class StepDefinitions{
 		}
 	}
 	
-	// journey management --------------------------------------------------------------------------------------------------------------------------------
+	// journey management --------------------------------------------------------------------------------------------
 	String origin;
 	String destination;
 	Boolean error;
