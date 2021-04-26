@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+//tjek
+
 public class Facade {
 
 	private LogisticCompany logisticCompany;
