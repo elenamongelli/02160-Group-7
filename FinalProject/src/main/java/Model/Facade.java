@@ -2,7 +2,6 @@ package Model;
 
 import java.util.ArrayList;
 
-//tjek
 
 public class Facade {
 
@@ -24,6 +23,11 @@ public class Facade {
 		if (container==null) return false;
 		logisticCompany.clientManager().addContainerToClient(ClientName, container);
 		return true;
+	}
+	
+	public boolean endJourney(Container container) {
+		if(logisticCompany.journeyManager().endJourney(container)) return true;
+		return false;
 	}
 
 	public void newSensorData(Container container, float temp) {
