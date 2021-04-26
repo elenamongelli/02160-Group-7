@@ -1,22 +1,21 @@
-
 Feature: Client management
 
   Scenario: The logistic company wants to create a new client
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
+    Given the client has the name "Salling"
+    And their address is "Søndergade 27, 8000 Aarhus"
+    And "Marianna Bedsted" as refrence person
+    And "kontakt@salling.dk" as their contact email
+    When the logistic company create "Salling" as a client
+    Then validate that all the client information is correct
 
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  Scenario: A client "Salling" want to update their information
+    Given the client "Salling" have the information
+      | "Søndergade 27, 8000 Aarhus" |
+      | "Marianna Bedsted"           |
+      | "kontakt@salling.dk"         |
+    And their new name is "Netto"
+    And their new address is "Kollegiebakken 7, 2800 Kongens Lyngby"
+    And their new refrence person is "Anders Bjarklev"
+    And their new email is "dtu@netto.dk"
+    When updating their information
+    Then validate that their information is updated

@@ -1,7 +1,11 @@
 Feature: Journeys management
-
-  Background: 
-    Given logistic company "Mærsk" have a client "Netto"
+ 
+   Background: The logistic company have a client that have a journey
+    Given the client has the name "Salling"
+    And their address is "Søndergade 27, 8000 Aarhus"
+    And "Marianna Bedsted" as refrence person
+    And "support@bilka.dk" as their contact email
+    When the logistic company create "Salling" as a client
 
   Scenario: Journey registration
     Given the client have a container at "Copenhagen"

@@ -5,23 +5,25 @@ import java.util.ArrayList;
 
 public class Facade {
 
-	private LogisticCompany logisticCompany;
+	private LogisticCompany logisticCompany = new LogisticCompany();
 
 
-	public Facade(LogisticCompany logisticCompany) {
+	public Facade() {
 		super();
-		this.logisticCompany = logisticCompany;
 	}
 
-	public void createClient(String ClientName) {
-		logisticCompany.clientManager().newClient(ClientName);
+	public void createClient(String clientName, String address, String referencePerson, String email) {
+		logisticCompany.clientManager().newClient(clientName, address, referencePerson, email);
 	}
 
-
-	public boolean newJourney(String ClientName, String origin, String destination) {
+	public Client returnClient(String clintName){
+		return logisticCompany.clientManager().getClient(clintName);
+	}
+	
+	public boolean newJourney(String clientName, String origin, String destination) {
 		Container container = logisticCompany.journeyManager().newJourney(origin, destination);
 		if (container==null) return false;
-		logisticCompany.clientManager().addContainerToClient(ClientName, container);
+		logisticCompany.clientManager().addContainerToClient(clientName, container);
 		return true;
 	}
 	
@@ -69,18 +71,20 @@ public class Facade {
 		return logisticCompany.journeyManager().ContainerManager().getLatestJourney(container);
 
 	}
-
-	/*
-	public ArrayList<Container> filterContainerByOrigin(ArrayList<Container> containers,String origin) {
-
-		ArrayList<Container> filteredContainers = new ArrayList<Container>();
-
-		for(Container i : containers) {
-			if ()
-		}
-
-		return null;
+	
+	public void updateClientName(String currentClientName, String newClientName) {
+		logisticCompany.clientManager().updateClientName(currentClientName, newClientName);
 	}
-	 */
+	
+	public void updateClientAddress(String currentClientName, String address) {
+		logisticCompany.clientManager().updateClientAddress(currentClientName, address);
+	}
+	
+	public void updateClientRefrencePerson(String currentClientName, String refrencePerson) {
+		logisticCompany.clientManager().updateClientRefrencePerson(currentClientName, refrencePerson);
+	}
 
+	public void updateClientEmail(String currentClientName, String email) {
+		logisticCompany.clientManager().updateClientEmail(currentClientName, email);
+	}
 }

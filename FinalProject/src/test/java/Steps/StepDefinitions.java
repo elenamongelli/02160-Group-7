@@ -3,27 +3,110 @@ package Steps;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 import Model.*;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
 public class StepDefinitions{
+	
+	// client management ---------------------------------------------------------------------------------
 
-	String clientName;
-	ArrayList<SensorData> actualAnswer;
-	Container container;
 	Facade model;
-
-	@Given("logistic company {string} have a client {string}")
-	public void logistic_company_have_a_client(String logisticCompanyName, String clientName) {
-		this.clientName = clientName; 
-		model = new Facade(new LogisticCompany(logisticCompanyName));
-		model.createClient(clientName);
+	
+	String clientName;
+	String address;
+	String refrencePerson;
+	String email;
+	
+	@Given("the client has the name {string}")
+	public void the_client_has_the_name(String clientName) {
+	    this.clientName = clientName;
+	}
+	@Given("their address is {string}")
+	public void their_address_is(String address) {
+	    this.address = address;
+	}
+	@Given("{string} as refrence person")
+	public void as_refrence_person(String refrencePerson) {
+	    this.refrencePerson = refrencePerson;
+	}
+	@Given("{string} as their contact email")
+	public void as_their_contact_email(String email) {
+	    this.email = email;
+	}
+	@When("the logistic company create {string} as a client")
+	public void the_logistic_company_create_as_a_client(String string) {
+		model = new Facade();
+		model.createClient(clientName, address, refrencePerson, email);
+	}
+	@Then("validate that all the client information is correct")
+	public void validate_that_all_the_client_information_is_correct() {
+		String actualName = model.returnClient(clientName).getName();
+		assertEquals(actualName,clientName);
+		String actualAddress = model.returnClient(clientName).getAddress();
+		assertEquals(actualAddress,address);
+		String actualRefrencePerson = model.returnClient(clientName).getReferencePerson();
+		assertEquals(actualRefrencePerson,refrencePerson);
+		String actualEmail= model.returnClient(clientName).getEmail();
+		assertEquals(actualEmail,email);
+	}
+	
+	@Given("the client {string} have the information")
+	public void the_client_have_the_information(String clientName, io.cucumber.datatable.DataTable dataTable) {
+		List<List<String>> info = dataTable.asLists(String.class);
+		
+		this.clientName = clientName;
+		address = info.get(0).toString();
+		refrencePerson = info.get(1).toString();
+		email = info.get(2).toString();
+		
+		model = new Facade();
+		model.createClient(clientName, address, refrencePerson, email);
+	}
+	
+	String newName;
+	@And("their new name is {string}")
+	public void their_new_name_is(String newName) {
+	    this.newName = newName;
+	}
+	
+	@And("their new address is {string}")
+	public void their_new_address_is(String address) {
+	    this.address = address;
 	}
 
+	@Given("their new refrence person is {string}")
+	public void their_new_refrence_person_is(String refrencePerson) {
+	    this.refrencePerson = refrencePerson;
+	}
+
+	@Given("their new email is {string}")
+	public void their_new_email_is(String email) {
+	    this.email = email;
+	}
+
+	@When("updating their information")
+	public void updating_their_information() {
+		model.updateClientName(clientName, newName);
+		model.updateClientAddress(newName, address);
+		model.updateClientRefrencePerson(newName, refrencePerson);
+		model.updateClientEmail(newName, email);
+	}
+
+	@Then("validate that their information is updated")
+	public void validate_that_their_information_is_updated() {
+		assertEquals(this.newName,model.returnClient(newName).getName());
+		assertEquals(this.address,model.returnClient(newName).getAddress());
+		assertEquals(this.refrencePerson,model.returnClient(newName).getReferencePerson());
+		assertEquals(this.email,model.returnClient(newName).getEmail());
+	}
+
+	// container management --------------------------------------------------------------------------
+	
+	ArrayList<SensorData> actualAnswer;
+	Container container;
+	
 	@Given("the client have a container going from from {string} to {string}")
 	public void the_client_have_a_container_going_from_from_to(String origin, String destination) {
 		model.newJourney(clientName, origin, destination);

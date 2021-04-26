@@ -2,7 +2,6 @@ package Model;
 
 public class LogisticCompany {
 
-	private String name;
 	
 	private LogisticCompanyJourneyManager journeyManager = new LogisticCompanyJourneyManager(); 
 	
@@ -16,13 +15,8 @@ public class LogisticCompany {
 		return clientManager;
 	}
 
-	public LogisticCompany(String name) {
+	public LogisticCompany() {
 		super();
-		this.name = name;
 	}
-
-	public String getName() {
-		return name;
-	}	
 
 }

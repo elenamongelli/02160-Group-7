@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Client {
 	
-	private String name;
+	private String clientName;
 	private String email;
 	private String address;
 	private String referencePerson;
@@ -13,9 +13,9 @@ public class Client {
 
 	private ArrayList<Container> clientsContainers = new ArrayList<Container>();
 	
-	public Client(String name, String email, String address, String referencePerson, UUID clientID) {
+	public Client(String clientName, String address, String referencePerson, String email, UUID clientID) {
 		super();
-		this.name = name;
+		this.clientName = clientName;
 		this.email = email;
 		this.address = address;
 		this.referencePerson = referencePerson;
@@ -35,11 +35,11 @@ public class Client {
 	}
 
 	public String getName() {
-		return name;
+		return clientName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.clientName = name;
 	}
 
 	public String getEmail() {
