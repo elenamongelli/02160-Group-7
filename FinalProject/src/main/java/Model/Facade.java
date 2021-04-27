@@ -16,8 +16,19 @@ public class Facade {
 		logisticCompany.clientManager().newClient(clientName, address, referencePerson, email);
 	}
 
-	public Client returnClient(String clintName){
-		return logisticCompany.clientManager().getClient(clintName);
+	public Client returnClientByName(String clintName){
+		return logisticCompany.clientManager().getClientByName(clintName);
+	}
+	
+	public Client searchClientByMail(String email) {
+		return logisticCompany.clientManager().getClientByEmail(email);
+	}
+	
+	public ArrayList<Container> getClientContainersByName(String clientName){
+		return returnClientByName(clientName).getClientsContainers();
+	}
+	public ArrayList<Container> getClientContainersByEmail(String email){
+		return searchClientByMail(email).getClientsContainers();
 	}
 	
 	public boolean newJourney(String clientName, String origin, String destination) {

@@ -42,13 +42,13 @@ public class StepDefinitions{
 	}
 	@Then("validate that all the client information is correct")
 	public void validate_that_all_the_client_information_is_correct() {
-		String actualName = model.returnClient(clientName).getName();
+		String actualName = model.returnClientByName(clientName).getName();
 		assertEquals(actualName,clientName);
-		String actualAddress = model.returnClient(clientName).getAddress();
+		String actualAddress = model.returnClientByName(clientName).getAddress();
 		assertEquals(actualAddress,address);
-		String actualRefrencePerson = model.returnClient(clientName).getReferencePerson();
+		String actualRefrencePerson = model.returnClientByName(clientName).getReferencePerson();
 		assertEquals(actualRefrencePerson,refrencePerson);
-		String actualEmail= model.returnClient(clientName).getEmail();
+		String actualEmail= model.returnClientByName(clientName).getEmail();
 		assertEquals(actualEmail,email);
 	}
 	
@@ -96,12 +96,41 @@ public class StepDefinitions{
 
 	@Then("validate that their information is updated")
 	public void validate_that_their_information_is_updated() {
-		assertEquals(this.newName,model.returnClient(newName).getName());
-		assertEquals(this.address,model.returnClient(newName).getAddress());
-		assertEquals(this.refrencePerson,model.returnClient(newName).getReferencePerson());
-		assertEquals(this.email,model.returnClient(newName).getEmail());
+		assertEquals(this.newName,model.returnClientByName(newName).getName());
+		assertEquals(this.address,model.returnClientByName(newName).getAddress());
+		assertEquals(this.refrencePerson,model.returnClientByName(newName).getReferencePerson());
+		assertEquals(this.email,model.returnClientByName(newName).getEmail());
 	}
-
+	
+	String originCheck;
+	String destinationCheck;
+	@Given("they have the following journies")
+	public void they_have_the_following_journies(io.cucumber.datatable.DataTable dataTable) {
+		originCheck = dataTable.cell(1, 0);
+		destinationCheck = dataTable.cell(3, 1);
+		model.newJourney(this.clientName, dataTable.cell(1, 0), dataTable.cell(1, 1));
+		model.newJourney(this.clientName, dataTable.cell(2, 0), dataTable.cell(2, 1));
+		model.newJourney(this.clientName, dataTable.cell(3, 0), dataTable.cell(3, 1));
+	}
+	
+	ArrayList<Container> ContainersByName;
+	@When("they search for their containers by name")
+	public void they_search_for_their_containers_by_name() {
+		ContainersByName = model.getClientContainersByName(this.clientName);
+	}
+	
+	ArrayList<Container> ContainersByEmail;
+	@When("they also try by using their email")
+	public void they_also_try_by_using_their_email() {
+		ContainersByEmail = model.getClientContainersByEmail(this.email);
+	}
+	@Then("validata that their containers are provided")
+	public void validata_that_their_containers_are_provided() {
+		assertEquals(ContainersByName,ContainersByEmail);
+		assertEquals(ContainersByName.get(0).getLatestJourney().getOrigin(),originCheck);
+		assertEquals(ContainersByName.get(2).getLatestJourney().getDestination(),destinationCheck);
+	}
+	
 	// container management --------------------------------------------------------------------------
 	
 	ArrayList<SensorData> actualAnswer;

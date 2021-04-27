@@ -12,7 +12,7 @@ public class LogisticCompanyClientManager {
 		clients.add(client);
 	}
 
-	public Client getClient(String client) {
+	public Client getClientByName(String client) {
 		Client placeholder = null;
 
 		for(int i = 0; i < clients.size(); i++) {
@@ -21,6 +21,15 @@ public class LogisticCompanyClientManager {
 		return placeholder;
 	}
 
+	public Client getClientByEmail(String email) {
+		Client placeholder = null;
+
+		for(int i = 0; i < clients.size(); i++) {
+			if(clients.get(i).getEmail().equals(email)) placeholder = clients.get(i);
+		}
+		return placeholder;
+	}
+	
 	public boolean addContainerToClient(String clientName, Container container) {
 		Client client = null;
 		for(int i = 0; i<clients.size(); i++) {
@@ -32,18 +41,18 @@ public class LogisticCompanyClientManager {
 	}
 	
 	public void updateClientName(String currentClientName, String newClientName) {
-		getClient(currentClientName).setName(newClientName);
+		getClientByName(currentClientName).setName(newClientName);
 	}
 	
 	public void updateClientAddress(String currentClientName, String address) {
-		getClient(currentClientName).setAddress(address);
+		getClientByName(currentClientName).setAddress(address);
 	}
 	
 	public void updateClientRefrencePerson(String currentClientName, String refrencePerson) {
-		getClient(currentClientName).setReferencePerson(refrencePerson);
+		getClientByName(currentClientName).setReferencePerson(refrencePerson);
 	}
 	
 	public void updateClientEmail(String currentClientName, String email) {
-		getClient(currentClientName).setEmail(email);
+		getClientByName(currentClientName).setEmail(email);
 	}
 }

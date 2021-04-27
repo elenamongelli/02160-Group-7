@@ -19,3 +19,17 @@ Feature: Client management
     And their new email is "dtu@netto.dk"
     When updating their information
     Then validate that their information is updated
+
+  Scenario: The A client "Salling" want to look at their containers
+    Given the client "Salling" have the information
+      | "Søndergade 27, 8000 Aarhus" |
+      | "Marianna Bedsted"           |
+      | "kontakt@salling.dk"         |
+    And they have the following journies
+      | "Origin"    | "Destination" |
+      | "Amsterdam" | "Copenhagen"  |
+      | "Barcelona" | "Aarhus"      |
+      | "London"    | "Esbjerg"     |
+    When they search for their containers by name
+    And they also try by using their email
+    Then validata that their containers are provided

@@ -18,7 +18,7 @@ Feature: Monitor internal status of container
       |   -1 |
       | 10.5 |
 
-  Scenario Outline: Display history of internal measurments
+  Scenario Outline: Add and dispay temperature hsitory
     Given the container have a history of <temp1> C°, <temp2> C°, <temp3> C°, <temp4> C°
     When reading a request for history display
     Then display the history of <temp1> C°, <temp2> C°, <temp3> C°, <temp4> C°
@@ -28,3 +28,13 @@ Feature: Monitor internal status of container
       |    25 |    10 |     2 |    30 |
       |    -1 |   -10 |    50 |    23 |
       |   1.5 |  26.3 | 23    |     4 |
+
+  Scenario Outline: Add and display diffrent sensordata
+    Given the container have a history of
+      | Temperature | Position          | Humidity |
+      |          25 | "55.2125;10.1022" | "10%"    |
+      |             | "55.3;11.521"     | "15%"    |
+      |          20 |                   | "12%"    |
+      |          20 | "55.652;9,1253"   |          |
+    When 
+    Then display the history of <temp1> C°, <temp2> C°, <temp3> C°, <temp4> C°
