@@ -25,7 +25,6 @@ public class Journey {
 		return destination;
 	}
 
-
 	public String getOrigin() {
 		return origin;
 	}

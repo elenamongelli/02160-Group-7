@@ -29,7 +29,15 @@ public class LogisticCompanyContainerManager {
 	}
 	
 	public void newSensordata(Container container, Float temp) {
-		SensorData newSensorData = new SensorData(temp);
+		newSensordata(container,temp, null, null);
+	}
+	
+	public void newSensordata(Container container, Float temp, String position) {
+		newSensordata(container,temp, position, null);
+	}
+	
+	public void newSensordata(Container container, Float temp, String position, String humidity) {
+		SensorData newSensorData = new SensorData(temp, position, humidity);
 		container.getLatestJourney().getLog().addSensorData(newSensorData);
 	}
 
