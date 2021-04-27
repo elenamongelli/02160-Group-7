@@ -36,5 +36,3 @@ Feature: Monitor internal status of container
       |             | "55.3;11.521"     | "15%"    |
       |          20 |                   | "12%"    |
       |          20 | "55.652;9,1253"   |          |
-    When 
-    Then display the history of <temp1> C°, <temp2> C°, <temp3> C°, <temp4> C°
