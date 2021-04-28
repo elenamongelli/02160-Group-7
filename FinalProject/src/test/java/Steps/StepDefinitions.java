@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Model.*;
+import application.model.*;
 import io.cucumber.java.en.*;
 
 public class StepDefinitions{
 
 	// client management ---------------------------------------------------------------------------------
 
-	Facade model;
+	RemoteContainerManagemeApp model;
 
 	String clientName;
 	String address;
@@ -39,18 +39,18 @@ public class StepDefinitions{
 	}
 	@When("the logistic company create {string} as a client")
 	public void the_logistic_company_create_as_a_client(String string) {
-		model = new Facade();
+		model = new RemoteContainerManagemeApp();
 		model.createClient(clientName, address, refrencePerson, email);
 	}
 	@Then("validate that all the client information is correct")
 	public void validate_that_all_the_client_information_is_correct() {
-		String actualName = model.returnClientByName(clientName).getName();
+		String actualName = model.searchClientByName(clientName).getName();
 		assertEquals(actualName,clientName);
-		String actualAddress = model.returnClientByName(clientName).getAddress();
+		String actualAddress = model.searchClientByName(clientName).getAddress();
 		assertEquals(actualAddress,address);
-		String actualRefrencePerson = model.returnClientByName(clientName).getReferencePerson();
+		String actualRefrencePerson = model.searchClientByName(clientName).getReferencePerson();
 		assertEquals(actualRefrencePerson,refrencePerson);
-		String actualEmail= model.returnClientByName(clientName).getEmail();
+		String actualEmail= model.searchClientByName(clientName).getEmail();
 		assertEquals(actualEmail,email);
 	}
 
@@ -63,7 +63,7 @@ public class StepDefinitions{
 		refrencePerson = info.get(1).toString();
 		email = info.get(2).toString();
 
-		model = new Facade();
+		model = new RemoteContainerManagemeApp();
 		model.createClient(clientName, address, refrencePerson, email);
 	}
 
@@ -98,10 +98,10 @@ public class StepDefinitions{
 
 	@Then("validate that their information is updated")
 	public void validate_that_their_information_is_updated() {
-		assertEquals(this.newName,model.returnClientByName(newName).getName());
-		assertEquals(this.address,model.returnClientByName(newName).getAddress());
-		assertEquals(this.refrencePerson,model.returnClientByName(newName).getReferencePerson());
-		assertEquals(this.email,model.returnClientByName(newName).getEmail());
+		assertEquals(this.newName,model.searchClientByName(newName).getName());
+		assertEquals(this.address,model.searchClientByName(newName).getAddress());
+		assertEquals(this.refrencePerson,model.searchClientByName(newName).getReferencePerson());
+		assertEquals(this.email,model.searchClientByName(newName).getEmail());
 	}
 
 	String originCheck;
@@ -136,7 +136,7 @@ public class StepDefinitions{
 	String client2;
 	@Given("the logistic company have two clients")
 	public void the_logistic_company_have_two_clients(io.cucumber.datatable.DataTable dataTable) {
-		model = new Facade();
+		model = new RemoteContainerManagemeApp();
 		model.createClient(dataTable.cell(0, 0), dataTable.cell(1, 0), dataTable.cell(2, 0), dataTable.cell(3, 0));
 		model.createClient(dataTable.cell(0, 1), dataTable.cell(1, 1), dataTable.cell(2, 1), dataTable.cell(3, 1));
 		client2=dataTable.cell(0, 1);

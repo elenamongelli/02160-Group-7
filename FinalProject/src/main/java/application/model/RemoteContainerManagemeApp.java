@@ -1,14 +1,14 @@
-package Model;
+package application.model;
 
 import java.util.ArrayList;
 
 
-public class Facade {
+public class RemoteContainerManagemeApp {
 
 	private LogisticCompany logisticCompany = new LogisticCompany();
 
 
-	public Facade() {
+	public RemoteContainerManagemeApp() {
 		super();
 	}
 
@@ -16,7 +16,7 @@ public class Facade {
 		logisticCompany.clientManager().newClient(clientName, address, referencePerson, email);
 	}
 
-	public Client returnClientByName(String clintName){
+	public Client searchClientByName(String clintName){
 		return logisticCompany.clientManager().getClientByName(clintName);
 	}
 
@@ -29,7 +29,7 @@ public class Facade {
 	}
 
 	public ArrayList<Container> getClientContainersByName(String clientName){
-		return returnClientByName(clientName).getClientsContainers();
+		return searchClientByName(clientName).getClientsContainers();
 	}
 	
 	public ArrayList<Container> getClientContainersByEmail(String email){
@@ -95,15 +95,11 @@ public class Facade {
 	}
 
 	public Log getLatestLog(Container container) {
-
 		return logisticCompany.journeyManager().ContainerManager().getLatestLog(container);
-
 	}
 
 	public SensorData getLatestSensorData(Container container) {
-
 		return logisticCompany.journeyManager().ContainerManager().getLatestSensorData(container);
-
 	}
 
 	public Journey getLatestJourney(Container container) {
