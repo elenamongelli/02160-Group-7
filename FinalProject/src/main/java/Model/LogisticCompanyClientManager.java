@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class LogisticCompanyClientManager {
-	
+
 	private ArrayList<Client> clients = new ArrayList<Client>();
-	
+
 	public void newClient(String clientName, String address, String referencePerson, String email) {
 		Client client = new Client(clientName, address, referencePerson, email, UUID.randomUUID());
 		clients.add(client);
+	}
+	
+	public ArrayList<Client> getClinets() {
+		return clients;
 	}
 
 	public Client getClientByName(String client) {
@@ -29,7 +33,7 @@ public class LogisticCompanyClientManager {
 		}
 		return placeholder;
 	}
-	
+
 	public boolean addContainerToClient(String clientName, Container container) {
 		Client client = null;
 		for(int i = 0; i<clients.size(); i++) {
@@ -39,20 +43,32 @@ public class LogisticCompanyClientManager {
 		client.addContainer(container);
 		return true;
 	}
-	
+
+	public void deleteClient(int i) {
+		clients.remove(i);
+	}
+
 	public void updateClientName(String currentClientName, String newClientName) {
 		getClientByName(currentClientName).setName(newClientName);
 	}
-	
+
 	public void updateClientAddress(String currentClientName, String address) {
 		getClientByName(currentClientName).setAddress(address);
 	}
-	
+
 	public void updateClientRefrencePerson(String currentClientName, String refrencePerson) {
 		getClientByName(currentClientName).setReferencePerson(refrencePerson);
 	}
-	
+
 	public void updateClientEmail(String currentClientName, String email) {
 		getClientByName(currentClientName).setEmail(email);
+	}
+
+	public void addViewer(String owner, String viewer) {
+		getClientByName(owner).addViewer(getClientByName(viewer));
+	}
+	
+	public void shareContainer(Container container, String viewer) {
+		getClientByName(viewer).addViewerContainers(container);
 	}
 }

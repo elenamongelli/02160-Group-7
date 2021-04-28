@@ -11,10 +11,10 @@ public class LogisticCompanyJourneyManager {
 		return containerManager;
 	}
 
-	public Container newJourney(String origin, String destination) {
+	public Container newJourney(String origin, String destination, String contend) {
 		if(!newJourneyChecker(origin, destination)) return null;
 
-		Journey newjourney = new Journey(origin, destination, new Log(new ArrayList<SensorData>()), UUID.randomUUID());
+		Journey newjourney = new Journey(origin, destination, new Log(new ArrayList<SensorData>()), contend, UUID.randomUUID());
 
 		Container container = containerManager.getContainerByOrigin(origin);
 		container.addJourney(newjourney);

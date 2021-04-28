@@ -1,6 +1,8 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public class LogisticCompanyContainerManager {
@@ -28,16 +30,8 @@ public class LogisticCompanyContainerManager {
 		return getContainerByOrigin(origin);
 	}
 	
-	public void newSensordata(Container container, Float temp) {
-		newSensordata(container,temp, null, null);
-	}
-	
-	public void newSensordata(Container container, Float temp, String position) {
-		newSensordata(container,temp, position, null);
-	}
-	
 	public void newSensordata(Container container, Float temp, String position, String humidity) {
-		SensorData newSensorData = new SensorData(temp, position, humidity);
+		SensorData newSensorData = new SensorData(temp, position, humidity, new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
 		container.getLatestJourney().getLog().addSensorData(newSensorData);
 	}
 

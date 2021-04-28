@@ -12,6 +12,8 @@ public class Client {
 	private UUID clientID;
 
 	private ArrayList<Container> clientsContainers = new ArrayList<Container>();
+	private ArrayList<Container> viewerContainers = new ArrayList<Container>();
+	private ArrayList<Client> viewers = new ArrayList<Client>();
 	
 	public Client(String clientName, String address, String referencePerson, String email, UUID clientID) {
 		super();
@@ -20,6 +22,28 @@ public class Client {
 		this.address = address;
 		this.referencePerson = referencePerson;
 		this.clientID = clientID;
+	}
+	
+	
+	
+	public ArrayList<Client> getViewers() {
+		return viewers;
+	}
+
+
+
+	public void addViewer(Client viewer) {
+		this.viewers.add(viewer);
+	}
+
+
+
+	public ArrayList<Container> getViewerContainers() {
+		return viewerContainers;
+	}
+
+	public void addViewerContainers(Container container) {
+		this.viewerContainers.add(container);
 	}
 
 	public boolean addContainer(Container newContainer) {

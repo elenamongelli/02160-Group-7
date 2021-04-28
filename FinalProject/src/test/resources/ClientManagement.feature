@@ -20,7 +20,7 @@ Feature: Client management
     When updating their information
     Then validate that their information is updated
 
-  Scenario: The A client "Salling" want to look at their containers
+  Scenario: A client "Salling" want to look at their containers
     Given the client "Salling" have the information
       | "Søndergade 27, 8000 Aarhus" |
       | "Marianna Bedsted"           |
@@ -33,3 +33,27 @@ Feature: Client management
     When they search for their containers by name
     And they also try by using their email
     Then validata that their containers are provided
+
+  Scenario: The logistic company wants to delete a client.
+    Given the logistic company have two clients
+      | "Salling"                    | "Coop"                             |
+      | "Søndergade 27, 8000 Aarhus" | "Roskildevej 65, 2620 Albertslund" |
+      | "Marianna Bedsted"           | "Allan Nørholm"                    |
+      | "kontakt@salling.dk"         | "kontakt@coop.dk"                  |
+    When the logistic client deletes the first client
+    Then the first client should be deleted
+
+  Scenario: A client want to give another client acces to view one or multiple choosen container(s)
+    Given the logistic company have two clients
+      | "Salling"                    | "Coop"                             |
+      | "Søndergade 27, 8000 Aarhus" | "Roskildevej 65, 2620 Albertslund" |
+      | "Marianna Bedsted"           | "Allan Nørholm"                    |
+      | "kontakt@salling.dk"         | "kontakt@coop.dk"                  |
+    And the first client have three registered containers
+      | "Origin"     | "Destination" | "Content"     |
+      | "Copenhagen" | "Paris"       | "fish"        |
+      | "Oslo"       | "Aalborg"     | "Red Aalborg" |
+      | "Aarhus"     | "Roskilde"    | "jyder"       |
+    When the client who owns the containers lets the other client view one container
+    Then the second client should see that container on their list of containers
+    And the first client should see the second client listed as a viewer to the container which has been shared

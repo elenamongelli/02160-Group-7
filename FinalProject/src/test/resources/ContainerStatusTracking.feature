@@ -29,10 +29,18 @@ Feature: Monitor internal status of container
       |    -1 |   -10 |    50 |    23 |
       |   1.5 |  26.3 | 23    |     4 |
 
-  Scenario Outline: Add and display diffrent sensordata
-    Given the container have a history of
+  Scenario: Add and display diffrent sensordata
+    Given a container have a history
       | Temperature | Position          | Humidity |
-      |          25 | "55.2125;10.1022" | "10%"    |
+      |        25.5 | "55.2125;10.1022" | "10%"    |
       |             | "55.3;11.521"     | "15%"    |
-      |          20 |                   | "12%"    |
-      |          20 | "55.652;9,1253"   |          |
+      |        20.1 |                   | "12%"    |
+      |        20.2 | "55.652;9,1253"   |          |
+    Then validate that the history stored is correct
+
+  Scenario: Check that a timestamp is added when new sensordata is added
+    Given the container adds sensordata
+      | Temperature | Position          | Humidity |
+      |        25.5 | "55.2125;10.1022" | "10%"    |
+    When the sensordata is added note the time
+    Then check that the sensordata have the corret timestamp

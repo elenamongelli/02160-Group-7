@@ -8,6 +8,8 @@ public class SensorData {
 	
 	private String humidity;
 	
+	private String timeStamp;
+	
 	public String getHumidity() {
 		return humidity;
 	}
@@ -32,19 +34,16 @@ public class SensorData {
 		this.temp = temp;
 	}
 
-	public SensorData(Float temp, String position, String humidity) {
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public SensorData(Float temp, String position, String humidity, String timeStamp) {
 		super();
 		this.temp = temp;
 		this.position = position;
 		this.humidity = humidity;
+		this.timeStamp = timeStamp;
 	}
-
-	@Override
-	public String toString() {
-		
-		return temp.toString();
-	}
-	
-	
 	
 }
