@@ -44,3 +44,4 @@ Feature: Monitor internal status of container
       |        25.5 | "55.2125;10.1022" | "10%"    |
     When the sensordata is added note the time
     Then check that the sensordata have the corret timestamp
+
