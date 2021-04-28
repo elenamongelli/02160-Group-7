@@ -44,12 +44,8 @@ Feature: Journeys management
     Then re-use the container for the journey
 
 
-  Scenario Outline: The client wants to ship a container with <content> from <origin> to <destination>.
-    When the client wants only see containers that orginated from <origin>
-    Then show the client all the containers that orginated from <origin>
+  Scenario: The client wants to ship a container with "Books" from "Helsinki" to "Dar es Salaam".
+    Given the client creats a journey from "Helsinki" to "Dar es Salaam" and the container is filled with "Books"
+    When the client wants to see what their shipments
+    Then the clients only container should contain "Books" 
 
-    Examples: 
-      | origin     |
-      | Copenhagen |
-      | Shanghai   |
-      | Antwerp    |

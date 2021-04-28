@@ -348,9 +348,23 @@ public class StepDefinitions{
 
 	@Then("re-use the container for the journey")
 	public void re_use_the_container_for_the_journey() {
-		System.out.println(adminApp.getAllContainers().size());
 		assertTrue(adminApp.getAllContainers().size()==1);
 	}
-
+	String expectedContent;
+	@Given("the client creats a journey from {string} to {string} and the container is filled with {string}")
+	public void the_client_creats_a_journey_from_to_and_the_container_is_filled_with(String origin, String destination, String content) {
+		journeyApp.newJourney(this.clientName, origin, destination, content);
+		expectedContent = content;
+	    
+	}
+	String actualContent;
+	@When("the client wants to see what their shipments")
+	public void the_client_wants_to_see_what_their_shipments() {
+		actualContent = adminApp.getClientContainersByName(clientName).get(0).getLatestJourney().getContent();
+	}
+	@Then("the clients only container should contain {string}")
+	public void the_clients_only_container_should_contain(String string) {
+		assertEquals(expectedContent, actualContent);
+	}
 
 }
