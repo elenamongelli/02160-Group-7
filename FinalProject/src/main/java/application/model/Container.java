@@ -1,15 +1,12 @@
-package Model;
+package application.model;
 import java.util.UUID; 
 import java.util.ArrayList;
 
 public class Container {
 	
 	private ArrayList<Journey> journeys;
-	
 	private String origin;
-	
 	private UUID id;
-	
 	private boolean onJourney;
 
 	public Container(ArrayList<Journey> journeys, String origin, UUID id, boolean onJourney) {

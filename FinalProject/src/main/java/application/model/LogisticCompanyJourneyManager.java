@@ -1,20 +1,32 @@
-package Model;
+package application.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class LogisticCompanyJourneyManager {
+	
+	// --- singleton---------------
+	private static LogisticCompanyJourneyManager instance;
+	private LogisticCompanyJourneyManager() {}
 
-	private LogisticCompanyContainerManager containerManager = new LogisticCompanyContainerManager();
+	public static LogisticCompanyJourneyManager getInstance() {
+		if(instance== null) {
+			instance= new LogisticCompanyJourneyManager();
+		}
+		return instance;
+	}
+	// --- singleton---------------
 
-	public LogisticCompanyContainerManager ContainerManager() {
+	private LogisticCompanyContainerManager containerManager = LogisticCompanyContainerManager.getInstance();
+
+	public LogisticCompanyContainerManager containerManager() {
 		return containerManager;
 	}
 
-	public Container newJourney(String origin, String destination) {
+	public Container newJourney(String origin, String destination, String contend) {
 		if(!newJourneyChecker(origin, destination)) return null;
 
-		Journey newjourney = new Journey(origin, destination, new Log(new ArrayList<SensorData>()), UUID.randomUUID());
+		Journey newjourney = new Journey(origin, destination, new Log(new ArrayList<SensorData>()), contend, UUID.randomUUID());
 
 		Container container = containerManager.getContainerByOrigin(origin);
 		container.addJourney(newjourney);
