@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public class LogisticCompanyContainerManager {
 	
+	// --- singleton---------------
 	private static LogisticCompanyContainerManager instance;
 	private LogisticCompanyContainerManager() {}
 
@@ -16,7 +17,8 @@ public class LogisticCompanyContainerManager {
 		}
 		return instance;
 	}
-
+	// --- singleton---------------
+	
 	private ArrayList<Container> containers = new ArrayList<Container>();
 
 	public ArrayList<Container> getContainers() {

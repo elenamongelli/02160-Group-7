@@ -6,6 +6,7 @@ import java.util.UUID;
 
 public class LogisticCompanyClientManager {
 	
+	// --- singleton---------------
 	private static LogisticCompanyClientManager instance;
 	private LogisticCompanyClientManager() {}
 
@@ -15,7 +16,8 @@ public class LogisticCompanyClientManager {
 		}
 		return instance;
 	}
-
+	// --- singleton---------------
+	
 	private ArrayList<Client> clients = new ArrayList<Client>();
 
 	public void newClient(String clientName, String address, String referencePerson, String email) {

@@ -2,19 +2,19 @@ package application.model.facades;
 
 import application.model.*;
 
-public class ContainerStatusApp {
+public class DataApp {
 
-	private static ContainerStatusApp instance;
-	private ContainerStatusApp() {}
+	private static DataApp instance;
+	private DataApp() {}
 
-	public static ContainerStatusApp getInstance() {
+	public static DataApp getInstance() {
 		if(instance== null) {
-			instance= new ContainerStatusApp();
+			instance= new DataApp();
 		}
 		return instance;
 	}
 	
-	LogisticCompanyContainerManager containerManager;
+	LogisticCompanyContainerManager containerManager = LogisticCompanyContainerManager.getInstance();
 
 	public void newSensorDataAll(Container container, Float temp, String position, String humidity) {
 		containerManager.newSensordata(container, temp, position, humidity);

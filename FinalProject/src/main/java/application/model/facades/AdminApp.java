@@ -16,9 +16,9 @@ public class AdminApp {
 		return instance;
 	}
 	
-	LogisticCompanyClientManager clientManager;
-	LogisticCompanyJourneyManager journeyManager;
-	LogisticCompanyContainerManager containerManager;
+	LogisticCompanyClientManager clientManager = LogisticCompanyClientManager.getInstance();
+	LogisticCompanyJourneyManager journeyManager = LogisticCompanyJourneyManager.getInstance();
+	LogisticCompanyContainerManager containerManager = LogisticCompanyContainerManager.getInstance();
 
 	public void createClient(String clientName, String address, String referencePerson, String email) {
 		clientManager.newClient(clientName, address, referencePerson, email);
