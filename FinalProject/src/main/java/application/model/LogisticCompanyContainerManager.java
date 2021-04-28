@@ -6,6 +6,16 @@ import java.util.Date;
 import java.util.UUID;
 
 public class LogisticCompanyContainerManager {
+	
+	private static LogisticCompanyContainerManager instance;
+	private LogisticCompanyContainerManager() {}
+
+	public static LogisticCompanyContainerManager getInstance() {
+		if(instance== null) {
+			instance= new LogisticCompanyContainerManager();
+		}
+		return instance;
+	}
 
 	private ArrayList<Container> containers = new ArrayList<Container>();
 

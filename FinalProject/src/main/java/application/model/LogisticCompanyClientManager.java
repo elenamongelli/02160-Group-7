@@ -3,7 +3,18 @@ package application.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+
 public class LogisticCompanyClientManager {
+	
+	private static LogisticCompanyClientManager instance;
+	private LogisticCompanyClientManager() {}
+
+	public static LogisticCompanyClientManager getInstance() {
+		if(instance== null) {
+			instance= new LogisticCompanyClientManager();
+		}
+		return instance;
+	}
 
 	private ArrayList<Client> clients = new ArrayList<Client>();
 

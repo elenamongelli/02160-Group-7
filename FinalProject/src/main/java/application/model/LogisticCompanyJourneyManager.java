@@ -4,10 +4,21 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class LogisticCompanyJourneyManager {
+	
+	private static LogisticCompanyJourneyManager instance;
+	private LogisticCompanyJourneyManager() {}
 
-	private LogisticCompanyContainerManager containerManager = new LogisticCompanyContainerManager();
+	public static LogisticCompanyJourneyManager getInstance() {
+		if(instance== null) {
+			instance= new LogisticCompanyJourneyManager();
+		}
+		return instance;
+	}
 
-	public LogisticCompanyContainerManager ContainerManager() {
+
+	private LogisticCompanyContainerManager containerManager;
+
+	public LogisticCompanyContainerManager containerManager() {
 		return containerManager;
 	}
 
