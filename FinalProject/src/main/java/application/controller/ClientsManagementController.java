@@ -17,18 +17,6 @@ public class ClientsManagementController {
 		this.sessionModel = session;
 	}
 
-	public void addItem() {
-        String newProduct = JOptionPane.showInputDialog("Please insert the item you want to add to inventory:");
-        //inventoryModel.addProduct(newProduct);
-	}
-
-	public void deleteItem(int selectedRow) {
-		if (selectedRow >= 0) {
-			//String productName = (String) inventoryModel.getValueAt(selectedRow, 0);
-			//inventoryModel.removeProduct(productName);
-		}
-	}
-
 	public void setView(ClientsManagementView view) {
 		this.view = view;
 		this.view.setSession(sessionModel);

@@ -6,14 +6,14 @@ import application.view.ClientsManagementView;
 public class ApplicationController {
 	
 	private LoginController loginController;
-	private ClientsManagementController inventoryController;
+	private ClientsManagementController clientsManagementController;
 	
 	public void manageInventory(Session session) {
-		inventoryController = new ClientsManagementController(session);
+		clientsManagementController = new ClientsManagementController(session);
 
-		ClientsManagementView invView = new ClientsManagementView(inventoryController);
-		inventoryController.setView(invView);
-		inventoryController.display();
+		ClientsManagementView invView = new ClientsManagementView(clientsManagementController);
+		clientsManagementController.setView(invView);
+		clientsManagementController.display();
 	}
 	
 	public void login() {
