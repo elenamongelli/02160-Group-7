@@ -2,6 +2,7 @@ package application.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,7 @@ import javax.swing.table.TableModel;
 
 import application.controller.ContainerHistoryController;
 import application.model.Session;
+import application.utils.GridBagLayoutUtils;
 
 public class ContainerHistoryView extends JFrame {
 
@@ -34,6 +36,7 @@ public class ContainerHistoryView extends JFrame {
 	private JLabel lblContainer;
 	private JButton btnAdd;
 	private JButton btnDelete;
+	private NewContainerHistoryView newContainerHistoryView;
 
 	public ContainerHistoryView(ContainerHistoryController controller) {
 		this.controller = controller;
@@ -51,39 +54,7 @@ public class ContainerHistoryView extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JTextField journeyIDField = new JTextField(10);
-				JTextField dateField = new JTextField(10);
-				JTextField positionField = new JTextField(10);
-				JTextField temperatureField = new JTextField(10);
-				JTextField humidityField = new JTextField(10);
-				JTextField pressureField = new JTextField(10);
-
-				JPanel myPanel = new JPanel();
-				myPanel.add(new JLabel("journeyID:"));
-				myPanel.add(journeyIDField);
-				myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-				myPanel.add(new JLabel("date:"));
-				myPanel.add(dateField);
-				myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-				myPanel.add(new JLabel("position:"));
-				myPanel.add(positionField);
-				myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-				myPanel.add(new JLabel("temperature:"));
-				myPanel.add(temperatureField);
-				myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-				myPanel.add(new JLabel("humidity:"));
-				myPanel.add(humidityField);
-				myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-				myPanel.add(new JLabel("pressure:"));
-				myPanel.add(pressureField);
-
-				int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter Container History Values",
-						JOptionPane.OK_CANCEL_OPTION);
-				if (result == JOptionPane.OK_OPTION) {
-					controller.addHistoryRowController(journeyIDField.getText(), dateField.getText(), 
-							positionField.getText(), temperatureField.getText(), humidityField.getText(), pressureField.getText());
-				}
-
+				newContainerHistoryView = new NewContainerHistoryView(controller);
 			}
 		});
 
