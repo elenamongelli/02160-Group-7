@@ -7,13 +7,13 @@ import application.model.*;
 import application.model.facades.AdminApp;
 import application.view.*;
 
-public class InventoryController {
+public class ClientsManagementController {
 
 	private Session sessionModel;
-	private InventoryView view;
+	private ClientsManagementView view;
 	private NewClientView newClientView;
 	
-	public InventoryController(Session session) {
+	public ClientsManagementController(Session session) {
 		this.sessionModel = session;
 	}
 
@@ -29,7 +29,7 @@ public class InventoryController {
 		}
 	}
 
-	public void setView(InventoryView view) {
+	public void setView(ClientsManagementView view) {
 		this.view = view;
 		this.view.setSession(sessionModel);
 		this.view.setTableModel(AdminApp.getInstance());

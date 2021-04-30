@@ -18,20 +18,20 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 
-import application.controller.InventoryController;
+import application.controller.ClientsManagementController;
 import application.model.Session;
 import application.model.facades.AdminApp;
 
-public class InventoryView extends JFrame {
+public class ClientsManagementView extends JFrame {
 
 	private static final long serialVersionUID = 989075282041187452L;
-	private InventoryController controller;
+	private ClientsManagementController controller;
 	private JTable tblInventory;
 	private JLabel lblSession;
 	private NewClientView newClientView;
 	private ClientInfoView clientInfoView;
 
-	public InventoryView(InventoryController controller) {
+	public ClientsManagementView(ClientsManagementController controller) {
 		this.controller = controller;
 		initGUI();
 	}

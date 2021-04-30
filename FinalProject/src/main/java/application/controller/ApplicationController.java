@@ -1,17 +1,17 @@
 package application.controller;
 
 import application.model.Session;
-import application.view.InventoryView;
+import application.view.ClientsManagementView;
 
 public class ApplicationController {
 	
 	private LoginController loginController;
-	private InventoryController inventoryController;
+	private ClientsManagementController inventoryController;
 	
 	public void manageInventory(Session session) {
-		inventoryController = new InventoryController(session);
+		inventoryController = new ClientsManagementController(session);
 
-		InventoryView invView = new InventoryView(inventoryController);
+		ClientsManagementView invView = new ClientsManagementView(inventoryController);
 		inventoryController.setView(invView);
 		inventoryController.display();
 	}

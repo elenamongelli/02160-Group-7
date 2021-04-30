@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 
 import application.controller.ContainerHistoryController;
-import application.controller.InventoryController;
+import application.controller.ClientsManagementController;
 import application.model.Session;
 import application.utils.GridBagLayoutUtils;
 
@@ -31,9 +31,9 @@ public class ClientInfoView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private InventoryController controller;
+	private ClientsManagementController controller;
 
-	public ClientInfoView(InventoryController controller) {
+	public ClientInfoView(ClientsManagementController controller) {
 		this.controller = controller;
 		initGUI();
 	}
