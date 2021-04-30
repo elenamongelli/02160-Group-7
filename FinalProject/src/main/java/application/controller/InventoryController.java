@@ -42,4 +42,14 @@ public class InventoryController {
 	public void display() {
 		view.setVisible(true);
 	}
+	
+	private ClientContainersJourneysController clientContainersJourneysController;
+	
+	public void manageClientContainers() {
+		clientContainersJourneysController = new ClientContainersJourneysController(new ClientContainersJourneys(), sessionModel);
+
+		ClientContainersJourneysView invView = new ClientContainersJourneysView(clientContainersJourneysController);
+		clientContainersJourneysController.setView(invView);
+		clientContainersJourneysController.display();
+	}
 }

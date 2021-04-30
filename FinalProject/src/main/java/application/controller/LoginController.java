@@ -9,24 +9,23 @@ public class LoginController {
 	private ApplicationController application;
 	private Session session;
 	private LoginView view;
-	
+
 	public LoginController(ApplicationController application) {
 		this.application = application;
 		this.session = new Session();
 		this.view = new LoginView(this);
 	}
-	
+
 	public void validateCredentials(String username) {
 		User user = new User();
 		user.setUsername(username);
 		System.out.println(username);
-		
-		  if(username.equals("admin")) {
-			  session.setUser(user);
-			   view.setVisible(false);
-				application.manageInventory(session);
-			  
-			  } else {
+
+		if (username.equals("admin")) {
+			session.setUser(user);
+			view.setVisible(false);
+			application.manageInventory(session);
+		} else {
 			view.showError();
 		}
 	}

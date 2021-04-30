@@ -18,75 +18,63 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 
-import application.controller.InventoryController;
+import application.controller.ClientContainersJourneysController;
 import application.model.Session;
-import application.model.facades.AdminApp;
 
-public class InventoryView extends JFrame {
+public class ClientContainersJourneysView extends JFrame {
 
 	private static final long serialVersionUID = 989075282041187452L;
-	private InventoryController controller;
-	private JTable tblInventory;
+	private ClientContainersJourneysController controller;
+	private JTable tblClientContainersJourneys;
 	private JLabel lblSession;
-	private NewClientView newClientView;
-
-	public InventoryView(InventoryController controller) {
+	
+	public ClientContainersJourneysView(ClientContainersJourneysController controller) {
 		this.controller = controller;
 		initGUI();
 	}
-
+	
 	private void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Inventory Manager");
+		setTitle("Client Containers Journeys");
 		setPreferredSize(new Dimension(800, 600));
-
-		// buttons
-		JButton btnRegister = new JButton("Register new client");
-
-		btnRegister.addActionListener(new ActionListener() {
+		
+		// buttons		
+		JButton btnExpand = new JButton("Expand selected item");
+		btnExpand.setEnabled(false);
+		btnExpand.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				newClientView = new NewClientView();
+				controller.expandItem(tblClientContainersJourneys.getSelectedRow());
 			}
 		});
 		
-		JButton btnGet = new JButton("Get client information");
-		
-		btnGet.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.manageClientContainers();
-			}
-		});
-
 		// toolbar
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
-
+		
 		JToolBar toolbar = new JToolBar();
-		toolbar.add(btnRegister);
-		toolbar.add(btnGet);
+		toolbar.add(btnExpand);
 		toolbar.add(Box.createHorizontalGlue());
 		toolbar.add(lblSession);
 		add(toolbar, BorderLayout.NORTH);
-
+		
 		// table
-		tblInventory = new JTable();
-		tblInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		tblInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//			@Override
-//			public void valueChanged(ListSelectionEvent e) {
-//				
-//			}
-//		});
-		add(new JScrollPane(tblInventory), BorderLayout.CENTER);
+		tblClientContainersJourneys = new JTable();
+		tblClientContainersJourneys.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblClientContainersJourneys.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				btnExpand.setEnabled((tblClientContainersJourneys.getSelectedRow() >= 0));
+			}
+		});
+		add(new JScrollPane(tblClientContainersJourneys), BorderLayout.CENTER);
+		
 		pack();
 		setLocationRelativeTo(null);
 	}
-
+	
 	public void setTableModel(TableModel model) {
-		tblInventory.setModel(AdminApp.getInstance());
-
+		tblClientContainersJourneys.setModel(model);
 	}
 
 	public void setSession(Session sessionModel) {
