@@ -45,11 +45,11 @@ public class InventoryController {
 	
 	private ClientContainersJourneysController clientContainersJourneysController;
 	
-	public void manageClientContainers() {
+	public void manageClientContainers(String clientName) {
 		clientContainersJourneysController = new ClientContainersJourneysController(new ClientContainersJourneys(), sessionModel);
 
 		ClientContainersJourneysView invView = new ClientContainersJourneysView(clientContainersJourneysController);
-		clientContainersJourneysController.setView(invView);
+		clientContainersJourneysController.setView(invView, clientName);
 		clientContainersJourneysController.display();
 	}
 }

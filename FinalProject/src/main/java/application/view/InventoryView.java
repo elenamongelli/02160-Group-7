@@ -29,6 +29,7 @@ public class InventoryView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	private NewClientView newClientView;
+	private ClientInfoView clientInfoView;
 
 	public InventoryView(InventoryController controller) {
 		this.controller = controller;
@@ -55,7 +56,8 @@ public class InventoryView extends JFrame {
 		btnGet.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.manageClientContainers();
+				
+				clientInfoView = new ClientInfoView(controller);				
 			}
 		});
 

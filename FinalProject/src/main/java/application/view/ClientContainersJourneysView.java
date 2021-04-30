@@ -26,6 +26,7 @@ public class ClientContainersJourneysView extends JFrame {
 	private static final long serialVersionUID = 989075282041187452L;
 	private ClientContainersJourneysController controller;
 	private JTable tblClientContainersJourneys;
+	private JLabel lblClientName;
 	private JLabel lblSession;
 	
 	public ClientContainersJourneysView(ClientContainersJourneysController controller) {
@@ -49,12 +50,17 @@ public class ClientContainersJourneysView extends JFrame {
 		});
 		
 		// toolbar
+		
+		lblClientName = new JLabel();
+		lblClientName.setHorizontalAlignment(SwingConstants.RIGHT);
+		
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JToolBar toolbar = new JToolBar();
 		toolbar.add(btnExpand);
 		toolbar.add(Box.createHorizontalGlue());
+		toolbar.add(lblClientName);
 		toolbar.add(lblSession);
 		add(toolbar, BorderLayout.NORTH);
 		
@@ -73,8 +79,9 @@ public class ClientContainersJourneysView extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
-	public void setTableModel(TableModel model) {
+	public void setTableModel(TableModel model, String clientName) {
 		tblClientContainersJourneys.setModel(model);
+		lblClientName.setText("<html> Client " + clientName + "</i></html>");
 	}
 
 	public void setSession(Session sessionModel) {

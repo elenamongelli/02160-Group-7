@@ -20,9 +20,9 @@ public class ClientContainersJourneysController {
 		this.clientContainersJourneysModel.addProduct();			
 	}
 
-	public void setView(ClientContainersJourneysView view) {
+	public void setView(ClientContainersJourneysView view, String clientName) {
 		this.view = view;
-		this.view.setTableModel(clientContainersJourneysModel);
+		this.view.setTableModel(clientContainersJourneysModel, clientName);
 		this.view.setSession(sessionModel);
 	}
 

@@ -32,8 +32,8 @@ public class ContainerHistoryView extends JFrame {
 
 	private ContainerHistoryController controller;
 	private JTable tblContainerHistory;
-	private JLabel lblSession;
 	private JLabel lblContainer;
+	private JLabel lblSession;
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private NewContainerHistoryView newContainerHistoryView;
@@ -68,18 +68,18 @@ public class ContainerHistoryView extends JFrame {
 		});
 
 		// toolbar
-		lblSession = new JLabel();
-		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
-
 		lblContainer = new JLabel();
 		lblContainer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		lblSession = new JLabel();
+		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		JToolBar toolbar = new JToolBar();
 		toolbar.add(btnAdd);
 		toolbar.add(btnDelete);
 		toolbar.add(Box.createHorizontalGlue());
-		toolbar.add(lblSession);
 		toolbar.add(lblContainer);
+		toolbar.add(lblSession);	
 		add(toolbar, BorderLayout.NORTH);
 
 		tblContainerHistory = new JTable();
