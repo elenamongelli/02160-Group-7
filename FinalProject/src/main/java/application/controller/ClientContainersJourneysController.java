@@ -16,8 +16,7 @@ public class ClientContainersJourneysController {
 		
 	public ClientContainersJourneysController(ClientContainersJourneys clientContainersJourneysModel, Session session) {
 		this.clientContainersJourneysModel = clientContainersJourneysModel;
-		this.sessionModel = session;
-		this.clientContainersJourneysModel.addProduct();			
+		this.sessionModel = session;			
 	}
 
 	public void setView(ClientContainersJourneysView view, String clientName) {
@@ -40,5 +39,9 @@ public class ClientContainersJourneysController {
 		containerHistoryController.setView(inv2View);		
 		
 		containerHistoryController.display();
+	}
+
+	public void updateField(String newValue, int rowIndex, int colIndex) {
+		clientContainersJourneysModel.updateField(newValue, rowIndex, colIndex);
 	}
 }

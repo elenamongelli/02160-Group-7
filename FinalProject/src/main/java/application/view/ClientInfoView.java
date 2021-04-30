@@ -48,7 +48,7 @@ public class ClientInfoView extends JFrame {
 		JTextField emailField = new JTextField(10);			
 		JButton btnSubmit = new JButton("Submit");
 		
-		add(new JLabel("Name:"), GridBagLayoutUtils.constraint(0, 0, 3));
+		add(new JLabel("Company name:"), GridBagLayoutUtils.constraint(0, 0, 3));
 		add(clientNameField, GridBagLayoutUtils.constraint(1, 0, 3));
 	
 		add(new JLabel("Email:"), GridBagLayoutUtils.constraint(0, 1, 3));

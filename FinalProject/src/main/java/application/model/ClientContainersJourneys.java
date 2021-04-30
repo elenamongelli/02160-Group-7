@@ -15,20 +15,11 @@ public class ClientContainersJourneys extends AbstractTableModel {
 	// Receive argument client information
 	public ClientContainersJourneys() {
 		clientContainersJourneysRows = new ArrayList<ClientContainersJourneysRow>();
-	}
-		
-	public void addProduct() {		
 		clientContainersJourneysRows.add(new ClientContainersJourneysRow("J1","O1","D1","C1","CO1"));
 		clientContainersJourneysRows.add(new ClientContainersJourneysRow("J2","O2","D2","C2","CO2"));
-		clientContainersJourneysRows.add(new ClientContainersJourneysRow("J3","O3","D3","C3","CO3"));		
-		fireTableDataChanged(); // notify the views that data changed
+		clientContainersJourneysRows.add(new ClientContainersJourneysRow("J3","O3","D3","C3","CO3"));
 	}
-
-	public void removeProduct(int selectedRow) {		
-		clientContainersJourneysRows.remove(selectedRow);		
-		fireTableDataChanged(); // notify the views that data changed
-	}	
-	
+			
 	// methods below to extend table model
 	
 	@Override
@@ -67,5 +58,21 @@ public class ClientContainersJourneys extends AbstractTableModel {
 			return columnNames[column];
 		}
 		return null;
+	}
+
+	public void updateField(String newValue, int rowIndex, int colIndex) {
+		ClientContainersJourneysRow row = clientContainersJourneysRows.get(rowIndex);		
+		if (colIndex == 0) {
+			row.setJourneyID(newValue);
+		} else if (colIndex == 1) {
+			row.setOrigin(newValue);
+		} else if (colIndex == 2) {
+			row.setDestination(newValue);
+		} else if (colIndex == 3) {
+			row.setContainerID(newValue);
+		} else if (colIndex == 4) {
+			row.setContent(newValue);
+		}			
+		fireTableDataChanged(); // notify the views that data changed
 	}
 }
