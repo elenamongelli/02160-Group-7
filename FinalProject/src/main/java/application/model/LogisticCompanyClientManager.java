@@ -8,7 +8,13 @@ public class LogisticCompanyClientManager {
 	
 	// --- singleton---------------
 	private static LogisticCompanyClientManager instance;
-	private LogisticCompanyClientManager() {}
+	
+	private LogisticCompanyClientManager() {
+	// Generate default clients	
+		clients.add(new Client("C1", "A1", "R1", "E1", UUID.randomUUID()));
+		clients.add(new Client("C2", "A2", "R2", "E2", UUID.randomUUID()));
+		clients.add(new Client("C3", "A3", "R3", "E3", UUID.randomUUID()));
+	}
 
 	public static LogisticCompanyClientManager getInstance() {
 		if(instance== null) {
