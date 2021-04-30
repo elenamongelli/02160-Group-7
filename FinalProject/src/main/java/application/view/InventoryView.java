@@ -20,6 +20,7 @@ import javax.swing.table.TableModel;
 
 import application.controller.InventoryController;
 import application.model.Session;
+import application.model.facades.AdminApp;
 
 public class InventoryView extends JFrame {
 
@@ -27,6 +28,7 @@ public class InventoryView extends JFrame {
 	private InventoryController controller;
 	private JTable tblInventory;
 	private JLabel lblSession;
+	private NewClientView newClientView;
 	
 	public InventoryView(InventoryController controller) {
 		this.controller = controller;
@@ -39,29 +41,29 @@ public class InventoryView extends JFrame {
 		setPreferredSize(new Dimension(800, 600));
 		
 		// buttons
-		JButton btnNew = new JButton("Add inventory item");
-		btnNew.addActionListener(new ActionListener() {
+		JButton btnRegister = new JButton("Register new client");
+	    btnRegister.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newClientView = new NewClientView(); 
+					}
+				});
+		btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addItem();
+				
 			}
 		});
-		JButton btnDelete = new JButton("Remove selected item");
-		btnDelete.setEnabled(false);
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.deleteItem(tblInventory.getSelectedRow());
-			}
-		});
+		JButton btnGet = new JButton("Get client information");
+
 		
 		// toolbar
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JToolBar toolbar = new JToolBar();
-		toolbar.add(btnNew);
-		toolbar.add(btnDelete);
+		toolbar.add(btnRegister);
+		toolbar.add(btnGet);
 		toolbar.add(Box.createHorizontalGlue());
 		toolbar.add(lblSession);
 		add(toolbar, BorderLayout.NORTH);
@@ -69,20 +71,20 @@ public class InventoryView extends JFrame {
 		// table
 		tblInventory = new JTable();
 		tblInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				btnDelete.setEnabled((tblInventory.getSelectedRow() >= 0));
-			}
-		});
+//		tblInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//			@Override
+//			public void valueChanged(ListSelectionEvent e) {
+//				
+//			}
+//		});
 		add(new JScrollPane(tblInventory), BorderLayout.CENTER);
-		
 		pack();
 		setLocationRelativeTo(null);
 	}
 	
 	public void setTableModel(TableModel model) {
-		tblInventory.setModel(model);
+		tblInventory.setModel(AdminApp.getInstance());
+		
 	}
 
 	public void setSession(Session sessionModel) {

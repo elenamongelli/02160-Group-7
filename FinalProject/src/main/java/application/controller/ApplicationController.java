@@ -1,6 +1,6 @@
 package application.controller;
 
-import application.model.facades.*;
+import application.model.Session;
 import application.view.InventoryView;
 
 public class ApplicationController {

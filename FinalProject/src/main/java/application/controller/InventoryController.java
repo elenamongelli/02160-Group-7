@@ -1,42 +1,42 @@
 package application.controller;
 
-
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
+
 import application.model.*;
-import application.model.facades.*;
-import application.view.InventoryView;
+import application.model.facades.AdminApp;
+import application.view.*;
+
 public class InventoryController {
 
 	private Session sessionModel;
 	private InventoryView view;
-	AdminApp adminApp = AdminApp.getInstance();
-	DataApp dataApp = DataApp.getInstance();
-	JourneyApp journeyApp = JourneyApp.getInstance();
+	private NewClientView newClientView;
 	
 	public InventoryController(Session session) {
 		this.sessionModel = session;
 	}
 
 	public void addItem() {
-        ArrayList<String> answer = 
-        
-        //journeyApp.newJourney(clientName, origin, destination, content);
+        String newProduct = JOptionPane.showInputDialog("Please insert the item you want to add to inventory:");
+        //inventoryModel.addProduct(newProduct);
 	}
 
 	public void deleteItem(int selectedRow) {
 		if (selectedRow >= 0) {
-			String productName = (String) inventoryModel.getValueAt(selectedRow, 0);
-			inventoryModel.removeProduct(productName);
+			//String productName = (String) inventoryModel.getValueAt(selectedRow, 0);
+			//inventoryModel.removeProduct(productName);
 		}
 	}
 
 	public void setView(InventoryView view) {
 		this.view = view;
-		this.view.setTableModel(inventoryModel);
 		this.view.setSession(sessionModel);
+		this.view.setTableModel(AdminApp.getInstance());
+	}
+	
+	public void changePage() {
+		view.setVisible(false);
 	}
 
 	public void display() {
