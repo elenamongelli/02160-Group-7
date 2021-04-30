@@ -44,7 +44,6 @@ public class ContainerHistoryView extends JFrame {
 	}
 
 	private void initGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Container History");
 		setPreferredSize(new Dimension(800, 600));
 

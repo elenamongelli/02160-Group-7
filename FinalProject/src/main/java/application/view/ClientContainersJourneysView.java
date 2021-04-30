@@ -35,7 +35,6 @@ public class ClientContainersJourneysView extends JFrame {
 	}
 	
 	private void initGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Client Containers Journeys");
 		setPreferredSize(new Dimension(800, 600));
 		
