@@ -25,6 +25,11 @@ public class LoginController {
 			session.setUser(user);
 			view.setVisible(false);
 			application.manageInventory(session);
+		} else if (username.equals("client")) {
+			session.setUser(user);
+			view.setVisible(false);
+			//application.manageInventory(session);
+			// TODO: Start here client flow
 		} else {
 			view.showError();
 		}

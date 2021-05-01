@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,8 +45,12 @@ public class NewContainerHistoryView extends JFrame {
 		setResizable(false);
 		setLayout(new GridBagLayout());
 		
+	    JFormattedTextField dateField = new JFormattedTextField(new SimpleDateFormat("yyyy-MM-dd"));
+	    dateField.setName("dateField");
+	    dateField.setColumns(10);
+	    dateField.setEditable(true);
+	
 		JTextField journeyIDField = new JTextField(10);
-		JTextField dateField = new JTextField(10);
 		JTextField positionField = new JTextField(10);
 		JTextField temperatureField = new JTextField(10);
 		JTextField humidityField = new JTextField(10);
@@ -54,7 +60,7 @@ public class NewContainerHistoryView extends JFrame {
 		add(new JLabel("journeyID:"), GridBagLayoutUtils.constraint(0, 0, 7));
 		add(journeyIDField, GridBagLayoutUtils.constraint(1, 0, 7));
 	
-		add(new JLabel("date:"), GridBagLayoutUtils.constraint(0, 1, 7));
+		add(new JLabel("date (yyyy-MM-dd):"), GridBagLayoutUtils.constraint(0, 1, 7));
 		add(dateField, GridBagLayoutUtils.constraint(1, 1, 7));
 	
 		add(new JLabel("position:"), GridBagLayoutUtils.constraint(0, 2, 7));
