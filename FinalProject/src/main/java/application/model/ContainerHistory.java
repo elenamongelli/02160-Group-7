@@ -76,4 +76,22 @@ public class ContainerHistory extends AbstractTableModel {
 		}
 		return null;
 	}
+	
+	public void updateField(String newValue, int rowIndex, int colIndex) {
+		ContainerHistoryRow row = containerHistoryRows.get(rowIndex);		
+		if (colIndex == 0) {
+			row.setJourneyID(newValue);
+		} else if (colIndex == 1) {
+			row.setDate(newValue);
+		} else if (colIndex == 2) {
+			row.setPosition(newValue);
+		} else if (colIndex == 3) {
+			row.setTemperature(newValue);
+		} else if (colIndex == 4) {
+			row.setHumidity(newValue);
+		} else if (colIndex == 5) {
+			row.setPressure(newValue);
+		}		
+		fireTableDataChanged(); // notify the views that data changed
+	}
 }

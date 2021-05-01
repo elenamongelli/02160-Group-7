@@ -38,4 +38,8 @@ public class ContainerHistoryController {
 	public void display() {	
 		view.setVisible(true);		
 	}
+	
+	public void updateField(String newValue, int rowIndex, int colIndex) {
+		containerHistoryModel.updateField(newValue, rowIndex, colIndex);
+	}
 }

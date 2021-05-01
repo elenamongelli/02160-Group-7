@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -78,9 +80,15 @@ public class ContainerHistoryView extends JFrame {
 		toolbar.add(btnDelete);
 		toolbar.add(Box.createHorizontalGlue());
 		toolbar.add(lblContainer);
+		
+		JLabel lblInfo = new JLabel();
+		lblInfo.setText(", Double click on a cell to edit value");
+		toolbar.add(lblInfo);
+		
 		toolbar.add(lblSession);	
 		add(toolbar, BorderLayout.NORTH);
-
+		
+		//table
 		tblContainerHistory = new JTable();
 		tblContainerHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblContainerHistory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -90,6 +98,17 @@ public class ContainerHistoryView extends JFrame {
 			}
 		});
 		add(new JScrollPane(tblContainerHistory), BorderLayout.CENTER);
+		
+		tblContainerHistory.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) {
+				if (me.getClickCount() == 2) {
+					int rowIndex = tblContainerHistory.getSelectedRow();
+					int colIndex = tblContainerHistory.getSelectedColumn();
+					String newValue = JOptionPane.showInputDialog("Please insert new value:");
+					controller.updateField(newValue,rowIndex,colIndex);
+				}
+			}
+		});
 
 		pack();
 		setLocationRelativeTo(null);
